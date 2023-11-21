@@ -1,0 +1,18 @@
+﻿<Window x:Class="Kafedra.EventsAddingWindows.AddEventWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kafedra.EventsAddingWindows"
+        mc:Ignorable="d"
+        Title="AddEventWindow" Height="300" Width="300" Background="#FF313338">
+    <Grid>
+        <Label Content="Тип мероприятия" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FFECECEC" FontSize="14"/>
+        <TextBox Name="EventTypeTextBox" HorizontalAlignment="Left" Height="23" Margin="10,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Название мероприятия" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Foreground="#FFEAEAEA" FontWeight="Bold" FontSize="14"/>
+        <TextBox Name="EventNameTextBox" HorizontalAlignment="Left" Height="23" Margin="10,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Дата мероприятия" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FFEDEDED" FontSize="14"/>
+        <DatePicker Name="EventDatePicker" HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Сохранить" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Width="86" Click="SaveButton_Click" Background="#FF5865F2" Foreground="#FFECECEC" FontWeight="Bold" FontSize="15" Height="33"/>
+    </Grid>
+</Window>
