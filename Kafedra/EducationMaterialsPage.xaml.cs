@@ -24,7 +24,6 @@ namespace Kafedra
 
     public partial class EducationMaterialsPage : Page
     {
-        string connectionString = "Data Source=WIN-TSLNADACF9B\\SQLEXPRESS;Initial Catalog=Kafedra;Integrated Security=True";
         private SqlDataAdapter dataadapter;
         private SqlCommandBuilder commandBuilder;
         private DataSet ds;
@@ -53,7 +52,7 @@ namespace Kafedra
             try
             {
                 string sql = "SELECT * FROM EducationalMaterials";
-                SqlConnection connection = new SqlConnection(connectionString);
+                SqlConnection connection = new SqlConnection(SQLConnection.connectionString);
                 dataadapter = new SqlDataAdapter(sql, connection);
                 commandBuilder = new SqlCommandBuilder(dataadapter);
                 ds = new DataSet();

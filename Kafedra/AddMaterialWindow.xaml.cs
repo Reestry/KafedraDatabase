@@ -6,8 +6,6 @@ namespace Kafedra
 {
     public partial class AddMaterialWindow : Window
     {
-        string connectionString = "Data Source=WIN-TSLNADACF9B\\SQLEXPRESS;Initial Catalog=Kafedra;Integrated Security=True";
-
         public AddMaterialWindow()
         {
             InitializeComponent();
@@ -16,7 +14,7 @@ namespace Kafedra
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             string sql = "INSERT INTO EducationalMaterials (FKAdminID, MaterialType, MaterialName, MaterialAutor, PublicationYear) VALUES (@FKAdminID, @MaterialType, @MaterialName, @MaterialAutor, @PublicationYear)";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(sql, connection))

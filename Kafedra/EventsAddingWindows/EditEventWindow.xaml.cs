@@ -9,7 +9,6 @@ namespace Kafedra.EventsAddingWindows
     /// </summary>
     public partial class EditEventWindow : Window
     {
-        string connectionString = "Data Source=WIN-TSLNADACF9B\\SQLEXPRESS;Initial Catalog=Kafedra;Integrated Security=True";
         private int eventId;
 
         public EditEventWindow(int eventId)
@@ -21,7 +20,7 @@ namespace Kafedra.EventsAddingWindows
 
         private void LoadEventInfo()
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand("SELECT * FROM Events WHERE EventsID = @eventId", connection);
@@ -44,7 +43,7 @@ namespace Kafedra.EventsAddingWindows
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand("UPDATE Events SET EventType = @eventType, EventName = @eventName, EventDate = @eventDate WHERE EventsID = @eventId", connection);

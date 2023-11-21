@@ -9,7 +9,6 @@ namespace Kafedra
     /// </summary>
     public partial class EditMaterialWindow : Window
     {
-        string connectionString = "Data Source=WIN-TSLNADACF9B\\SQLEXPRESS;Initial Catalog=Kafedra;Integrated Security=True";
         private SqlDataAdapter dataadapter;
 
         public int ID;
@@ -25,7 +24,7 @@ namespace Kafedra
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand("UPDATE EducationalMaterials SET MaterialType = @MaterialType, MaterialName = @MaterialName, MaterialAutor = @MaterialAutor, PublicationYear = @PublicationYear WHERE EducationalMaterialsID = @EducationalMaterialsID", connection);

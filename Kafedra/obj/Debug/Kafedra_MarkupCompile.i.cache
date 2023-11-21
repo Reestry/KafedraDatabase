@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-G:\_________CourseWork\Kafedra\Kafedra\obj\Debug\
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\
 Kafedra
 none
 false
 DEBUG;TRACE
-G:\_________CourseWork\Kafedra\Kafedra\App.xaml
+D:\_________KafedraCourse\Kafedra\Kafedra\App.xaml
 9-1518479889
 
-14-518496132
+15-648303270
 13-38814620
 AddMaterialWindow.xaml;AdminPage.xaml;EditMaterialWindow.xaml;EducationMaterialsPage.xaml;EventsAddingWindows\AddEventWindow.xaml;EventsAddingWindows\AddParticipantWindow.xaml;EventsAddingWindows\EditEventWindow.xaml;EventsControllerPage.xaml;MainWindow.xaml;
 

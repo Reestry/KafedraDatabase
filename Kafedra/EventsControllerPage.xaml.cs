@@ -13,8 +13,6 @@ namespace Kafedra
     public partial class EventsControllerPage : Page
     {
 
-        string connectionString = "Data Source=WIN-TSLNADACF9B\\SQLEXPRESS;Initial Catalog=Kafedra;Integrated Security=True";
-
         public EventsControllerPage()
         {
             InitializeComponent();
@@ -51,7 +49,7 @@ namespace Kafedra
         {
             participantsComboBox.Items.Clear();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand("SELECT * FROM Participants", connection);
@@ -70,7 +68,7 @@ namespace Kafedra
         {
             eventsComboBox.Items.Clear();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand("SELECT * FROM Events", connection);
@@ -87,7 +85,7 @@ namespace Kafedra
 
         private void LoadDataGrid()
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
             {
                 connection.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM GetParticipantEvents()", connection);
@@ -101,7 +99,7 @@ namespace Kafedra
 
         private void LoadGuestDataGrid()
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
             {
                 connection.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter("Select * from GetGuestsEvents()", connection);
@@ -118,7 +116,7 @@ namespace Kafedra
             int participantId = (int)selectedParticipant.Tag;
             int eventId = (int)selectedEvent.Tag;
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand("INSERT INTO Events_Participants (FKParticipantsID, FKEventsID) VALUES (@participantId, @eventId)", connection);
@@ -135,7 +133,7 @@ namespace Kafedra
             DataRowView row = (DataRowView)dataGrid.SelectedItem;
             int assignmentId = (int)row["Events_ParticipantsID"];
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand("EXEC DeleteEventParticipant @Events_ParticipantsID", connection);
@@ -177,7 +175,7 @@ namespace Kafedra
             ComboBoxItem selectedEvent = (ComboBoxItem)eventsComboBox.SelectedItem;
             int eventId = (int)selectedEvent.Tag;
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
             {
                 connection.Open();
 
@@ -218,7 +216,7 @@ namespace Kafedra
             ComboBoxItem selectedParticipant = (ComboBoxItem)participantsComboBox.SelectedItem;
             int participantId = (int)selectedParticipant.Tag;
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
             {
                 connection.Open();
                 SqlCommand command1 = new SqlCommand("DELETE FROM Events_Participants WHERE FKParticipantsID = @participantId", connection);

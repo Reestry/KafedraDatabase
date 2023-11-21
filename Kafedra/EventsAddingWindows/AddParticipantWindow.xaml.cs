@@ -20,7 +20,6 @@ namespace Kafedra.EventsAddingWindows
     /// </summary>
     public partial class AddParticipantWindow : Window
     {
-        string connectionString = "Data Source=WIN-TSLNADACF9B\\SQLEXPRESS;Initial Catalog=Kafedra;Integrated Security=True";
         public AddParticipantWindow()
         {
             InitializeComponent();
@@ -33,7 +32,7 @@ namespace Kafedra.EventsAddingWindows
             string lastName = LastNameTextBox.Text;
             string patronomyc = PatronomycTextBox.Text;
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand("INSERT INTO Participants (FirstName, LastName, Patronymic) VALUES (@firstName, @lastName, @patronymic)", connection);

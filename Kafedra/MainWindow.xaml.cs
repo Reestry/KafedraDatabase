@@ -34,11 +34,10 @@ namespace Kafedra
         {
             try
             {
-                string connectionString = "Data Source=WIN-TSLNADACF9B\\SQLEXPRESS;Initial Catalog=Kafedra;Integrated Security=True";
                 string queryAdmin = $"SELECT * FROM Admin WHERE Login='{LoginTextBox.Text}' AND Password='{PasswordBox.Password}'";
                 string queryTeacher = $"SELECT * FROM Teacher WHERE Login='{LoginTextBox.Text}' AND Password='{PasswordBox.Password}'";
 
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(queryAdmin, connection);

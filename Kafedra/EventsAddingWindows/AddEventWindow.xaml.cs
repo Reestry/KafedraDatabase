@@ -20,7 +20,6 @@ namespace Kafedra.EventsAddingWindows
     /// </summary>
     public partial class AddEventWindow : Window
     {
-        string connectionString = "Data Source=WIN-TSLNADACF9B\\SQLEXPRESS;Initial Catalog=Kafedra;Integrated Security=True";
         public AddEventWindow()
         {
             InitializeComponent();
@@ -31,7 +30,7 @@ namespace Kafedra.EventsAddingWindows
             string eventName = EventNameTextBox.Text;
             DateTime eventDate = EventDatePicker.SelectedDate.Value;
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand("INSERT INTO Events (EventType, EventName, EventDate) VALUES (@eventType, @eventName, @eventDate)", connection);
