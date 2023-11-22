@@ -209,7 +209,7 @@ EXEC GetEventsForParticipant @ParticipantID = 1;
 
 
 
----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
 /*-------------------------------------*/
 
 create table Post(
@@ -235,7 +235,7 @@ SpecializationName NVARChar(50) NOT NULL
 );
 
 create table Discipline(
-DisciplineID   INT  NOT NULL PRIMARY KEY IDENTITY, /*как сделать определенной дисциплине свой id*/
+DisciplineID   INT  NOT NULL PRIMARY KEY IDENTITY,
 DisciplineName  NVARChar(max) NOT NULL,
 AwarageTime INT NOT NULL  /*NVARChar(50)*/
 );

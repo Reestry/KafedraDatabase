@@ -23,5 +23,10 @@ namespace Kafedra
         {
             MyFrame.Content = new EventsControllerPage();
         }
+
+        private void Projects_Click(object sender, RoutedEventArgs e)
+        {
+            MyFrame.Content = new Projects();
+        }
     }
 }
