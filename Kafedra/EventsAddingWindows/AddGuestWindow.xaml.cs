@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace Kafedra.EventsAddingWindows
+{
+    /// <summary>
+    /// Логика взаимодействия для AddGuestWindow.xaml
+    /// </summary>
+    public partial class AddGuestWindow : Window
+    {
+        public AddGuestWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            string firstName = FirstNameTextBox.Text;
+            string lastName = LastNameTextBox.Text;
+            string patronomyc = PatronomycTextBox.Text;
+
+            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("INSERT INTO Guests (FirstName, LastName, Patronymic) VALUES (@firstName, @lastName, @patronymic)", connection);
+                command.Parameters.AddWithValue("@firstName", firstName);
+                command.Parameters.AddWithValue("@lastName", lastName);
+                command.Parameters.AddWithValue("@patronymic", patronomyc);
+                command.ExecuteNonQuery();
+            }
+
+            this.Close();
+        }
+    }
+}

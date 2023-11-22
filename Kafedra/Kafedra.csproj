@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EventsAddingWindows\AddGuestWindow.xaml.cs">
+      <DependentUpon>AddGuestWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SQLConnection.cs" />
     <Page Include="AddMaterialWindow.xaml">
       <SubType>Designer</SubType>
@@ -73,6 +76,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EventsAddingWindows\AddEventWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EventsAddingWindows\AddGuestWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

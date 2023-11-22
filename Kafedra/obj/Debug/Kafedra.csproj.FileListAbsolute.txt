@@ -60,3 +60,5 @@ D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Kafedra.csproj.GenerateResou
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Kafedra.csproj.CoreCompileInputs.cache
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Kafedra.exe
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Kafedra.pdb
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\EventsAddingWindows\AddGuestWindow.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\EventsAddingWindows\AddGuestWindow.baml

@@ -4,9 +4,7 @@ using System.Windows;
 
 namespace Kafedra.EventsAddingWindows
 {
-    /// <summary>
-    /// Логика взаимодействия для EditEventWindow.xaml
-    /// </summary>
+
     public partial class EditEventWindow : Window
     {
         private int eventId;
@@ -25,7 +23,7 @@ namespace Kafedra.EventsAddingWindows
                 connection.Open();
                 SqlCommand command = new SqlCommand("SELECT * FROM Events WHERE EventsID = @eventId", connection);
                 command.Parameters.AddWithValue("@eventId", eventId);
-                SqlDataReader reader = command.ExecuteReader();
+                SqlDataReader reader = command.ExecuteReader(); 
                 if (reader.Read())
                 {
                     EventTypeTextBox.Text = reader["EventType"].ToString();
