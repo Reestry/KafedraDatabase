@@ -91,7 +91,7 @@ namespace Kafedra
                     command.Parameters.AddWithValue("@ProjectID", projectId);
                     command.ExecuteNonQuery();
                 }
-                _dataAdapter.Update(_dataTable); // Переместите эту строку сюда
+                _dataAdapter.Update(_dataTable);
             }
         }
 
