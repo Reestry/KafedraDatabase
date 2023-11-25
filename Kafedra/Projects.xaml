@@ -9,7 +9,18 @@
       Title="Projects">
 
     <Grid>
-        <DataGrid x:Name="ProjectsDataGrid" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="200" Width="760"/>
+        <DataGrid x:Name="ProjectsDataGrid" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="200" Width="760">
+
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить"/>
+                    <MenuItem Header="Редактировать"/>
+                    <MenuItem Header="Удалить" Click="DeleteButton_Click"/>
+                    <MenuItem Header="Завершить разработку" Click="FinishDevelopment_Click"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        
         <Button x:Name="UpdateButton" Content="Сохранить" HorizontalAlignment="Left" Margin="10,220,0,0" VerticalAlignment="Top" Width="75" Click="UpdateButton_Click"/>
         <Button x:Name="DeleteButton" Content="Delete" HorizontalAlignment="Left" Margin="100,220,0,0" VerticalAlignment="Top" Width="75" Click="DeleteButton_Click"/>
 

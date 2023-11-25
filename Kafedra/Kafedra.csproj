@@ -61,6 +61,9 @@
     <Compile Include="Projects.xaml.cs">
       <DependentUpon>Projects.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProjectsWindows\ProjectAddWindow.xaml.cs">
+      <DependentUpon>ProjectAddWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SQLConnection.cs" />
     <Page Include="AddMaterialWindow.xaml">
       <SubType>Designer</SubType>
@@ -138,6 +141,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ProjectsWindows\ProjectAddWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -165,5 +172,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

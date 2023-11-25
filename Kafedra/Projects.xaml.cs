@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System;
+using Kafedra.EventsAddingWindows;
+using Kafedra.ProjectsWindows;
+using System.Collections.Generic;
 
 namespace Kafedra
 {
@@ -30,8 +22,20 @@ namespace Kafedra
         {
             InitializeComponent();
             LoadData();
+
+            ProjectsDataGrid.LayoutUpdated += DataGrid_LayoutUpdated;
         }
 
+        private void DataGrid_LayoutUpdated(object sender, EventArgs e)
+        {
+            // Скройте столбец Events_ParticipantsID
+            if (ProjectsDataGrid.Columns.Count > 0)
+            {
+                ProjectsDataGrid.Columns[0].Visibility = Visibility.Hidden;
+                ProjectsDataGrid.Columns[1].Visibility = Visibility.Hidden;
+
+            }
+        }
 
         private void LoadData()
         {
@@ -43,15 +47,55 @@ namespace Kafedra
             _dataAdapter.Fill(_dataTable);
             ProjectsDataGrid.ItemsSource = _dataTable.DefaultView;
 
-            ProjectsDataGrid.Columns[0].Visibility = Visibility.Collapsed;
-            ProjectsDataGrid.Columns[1].Visibility = Visibility.Collapsed;
+        }
+        private void Update(object sender, EventArgs e)
+        {
+            LoadData();
         }
 
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            _dataAdapter.Update(_dataTable);
+            ProjectAddWindow ProjectAddWindow = new ProjectAddWindow();
+            ProjectAddWindow.ShowDialog();
+            LoadData();
+
+            ProjectAddWindow.Closed += Update;
+
+            //  _dataAdapter.Update(_dataTable);
         }
+
+        private void FinishDevelopment_Click(object sender, RoutedEventArgs e)
+        {
+            if (ProjectsDataGrid.SelectedItem != null)
+            {
+                DataRowView row = (DataRowView)ProjectsDataGrid.SelectedItem;
+                int projectId = (int)row["ProjectsID"];
+
+                // Обновите статус на "Закончен" в базе данных
+                UpdateProjectStatus(projectId, "Завершен");
+
+                // Обновите отображаемые данные в DataGrid
+                LoadData();
+            }
+        }
+
+        private void UpdateProjectStatus(int projectId, string status)
+        {
+            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("UPDATE Projects SET Status = @Status WHERE ProjectsID = @ProjectID", connection))
+                {
+                    command.Parameters.AddWithValue("@Status", status);
+                    command.Parameters.AddWithValue("@ProjectID", projectId);
+                    command.ExecuteNonQuery();
+                }
+                _dataAdapter.Update(_dataTable); // Переместите эту строку сюда
+            }
+        }
+
+
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {

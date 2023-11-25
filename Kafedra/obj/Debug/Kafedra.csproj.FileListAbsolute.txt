@@ -64,3 +64,5 @@ D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\EventsAddingWindows\AddGuest
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\EventsAddingWindows\AddGuestWindow.baml
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Projects.g.cs
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Projects.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\ProjectsWindows\ProjectAddWindow.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\ProjectsWindows\ProjectAddWindow.baml
