@@ -677,26 +677,7 @@ StudentsCount int not null
 
 drop procedure GetTeacherDisciplines;
 
-CREATE PROCEDURE GetTeacherDisciplines @TeacherID INT AS
-BEGIN
-    SELECT 
-        D.DisciplineName, 
-        TW.TypeWorkName, 
-        S.SpecializationName, 
-        TM.AwarageTime, 
-        SG.GroupName
-    FROM TimeManage TM
-    INNER JOIN Teacher T ON TM.FKTeacherID = T.TeacherID
-    INNER JOIN TypeWork_Specialization_Discipline TWSD ON TM.FKTypeWork_Specialization_DisciplineID = TWSD.TypeWork_Specialization_DisciplineID
-    INNER JOIN TypeWork TW ON TWSD.FKTypeWorkID = TW.TypeWorkID
-    INNER JOIN Specialization_Discipline SD ON TWSD.FKSpecialization_DisciplineID = SD.Specialization_DisciplineID
-    INNER JOIN Discipline D ON SD.FKDisciplineID = D.DisciplineID
-    INNER JOIN Specialization S ON SD.FKSpecializationID = S.SpecializationID
-    INNER JOIN SupervisedGroup SG ON TM.FKGroupID = SG.SupervisedGroupID
-    WHERE T.TeacherID = @TeacherID
-END
 
-EXEC GetTeacherDisciplines @TeacherID = 1
 
 
 
