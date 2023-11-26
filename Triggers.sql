@@ -21,13 +21,98 @@ Drop table Grade;
 
 
 
+/*---------Курсач */
+drop procedure GetTeacherDisciplines;
 
-create table Person(
-PersonID INT  NOT NULL PRIMARY KEY IDENTITY, 
-FirstName  NVARChar(50) NOT NULL,
-LastName   NVARChar(50) NOT NULL,
-Patronymic NVARChar(50)
-);
+CREATE PROCEDURE GetTeacherDisciplines @TeacherID INT AS
+BEGIN
+    SELECT 
+        D.DisciplineName, 
+        TW.TypeWorkName, 
+        S.SpecializationName, 
+    FROM 
+        TimeManage TM
+    INNER JOIN 
+        Discipline D ON TM.FKDisciplineID = D.DisciplineID
+    INNER JOIN 
+        TypeWork TW ON TM.FKTypeWorkID = TW.TypeWorkID
+    INNER JOIN 
+        Specialization_Discipline SD ON D.DisciplineID = SD.FKDisciplineID
+    INNER JOIN 
+        Specialization S ON SD.FKSpecializationID = S.SpecializationID
+    WHERE 
+        TM.FKTeacherID = @TeacherID
+END
+
+
+
+
+
+
+EXEC GetTeacherDisciplines @TeacherID = 1
+
+
+drop procedure GetTeacherDisciplines_v2;
+
+CREATE PROCEDURE GetTeacherDisciplines_v2 @TeacherID INT AS
+BEGIN
+    SELECT DISTINCT
+        D.DisciplineName, 
+        TW.TypeWorkName, 
+        S.SpecializationName, 
+        TM.AwarageTime 
+    FROM 
+        TimeManage TM
+    INNER JOIN 
+        Discipline D ON TM.FKDisciplineID = D.DisciplineID
+    INNER JOIN 
+        TypeWork TW ON TM.FKTypeWorkID = TW.TypeWorkID
+    INNER JOIN 
+        Specialization_Discipline SD ON D.DisciplineID = SD.FKDisciplineID
+    INNER JOIN 
+        Specialization S ON SD.FKSpecializationID = S.SpecializationID
+    WHERE 
+        TM.FKTeacherID = @TeacherID
+END
+
+
+EXEC GetTeacherDisciplines_v2 @TeacherID = 2
+
+
+
+
+----
+
+
+CREATE PROCEDURE GetTeacherDisciplines_v3 @TeacherID INT AS
+BEGIN
+    SELECT 
+        D.DisciplineName, 
+        TW.TypeWorkName, 
+        S.SpecializationName, 
+        TM.AwarageTime,
+        SG.GroupName
+    FROM 
+        TimeManage TM
+    INNER JOIN 
+        Discipline D ON TM.FKDisciplineID = D.DisciplineID
+    INNER JOIN 
+        TypeWork TW ON TM.FKTypeWorkID = TW.TypeWorkID
+    INNER JOIN 
+        Specialization_Discipline SD ON D.DisciplineID = SD.FKDisciplineID
+    INNER JOIN 
+        Specialization S ON SD.FKSpecializationID = S.SpecializationID
+    INNER JOIN 
+        SupervisedGroup SG ON TM.FKGroupID = SG.SupervisedGroupID
+    WHERE 
+        TM.FKTeacherID = @TeacherID
+END
+
+EXEC GetTeacherDisciplines_v3 @TeacherID = 4
+
+
+
+
 
 /* НЕ везде delete cascade. Чекни on delete set null    */
 create table Admin(
@@ -44,7 +129,8 @@ create table Projects(
 FKAdminID INT Foreign Key (FKAdminID) References Admin(AdminID),
 
 ProjectsID INT  NOT NULL PRIMARY KEY IDENTITY, 
-TypeOfProject  NVARChar(MAX) NOT NULL
+TypeOfProject  NVARChar(MAX) NOT NULL,
+Status NVARCHAR(50) NOT NULL
 );
 
 
@@ -212,67 +298,7 @@ EXEC GetEventsForParticipant @ParticipantID = 1;
 -----------------------------------------------------------------------------------------------------------------
 /*-------------------------------------*/
 
-create table Post(
-PostID   INT  NOT NULL PRIMARY KEY IDENTITY, 
-PostName  NVARChar(50) NOT NULL,
-);
 
-create table Teacher(
-FKPostID INT Foreign Key (FKPostID) References Post(PostID),
-FKPersonID  INT  NOT NULL REFERENCES Person (PersonID) on delete cascade,
-
-TeacherID INT  NOT NULL PRIMARY KEY IDENTITY, 
-Login  NVARChar(50) NOT NULL,
-Password   NVARChar(50) NOT NULL
-);
-
-
-/*-----------------------*/
-
-create table Specialization(
-SpecializationID INT  NOT NULL PRIMARY KEY IDENTITY,
-SpecializationName NVARChar(50) NOT NULL
-);
-
-create table Discipline(
-DisciplineID   INT  NOT NULL PRIMARY KEY IDENTITY,
-DisciplineName  NVARChar(max) NOT NULL,
-AwarageTime INT NOT NULL  /*NVARChar(50)*/
-);
-
-create table TypeWork(
-TypeWorkID INT  NOT NULL PRIMARY KEY IDENTITY,
-TypeWorkName NVARChar(50) NOT NULL
-);
-
-create table Specialization_Discipline(
-FKSpecializationID INT Foreign Key (FKSpecializationID) References Specialization(SpecializationID),
-FKDisciplineID INT Foreign Key (FKDisciplineID) References Discipline(DisciplineID),
-
-Specialization_DisciplineID INT  NOT NULL PRIMARY KEY IDENTITY
-
-);
-
-
-
-create table TimeManage(
-FKTeacherID INT Foreign Key (FKTeacherID) References Teacher(TeacherID),
-FKTypeWorkID   INT Foreign Key (FKTypeWorkID) References TypeWork(TypeWorkID),
-FKDisciplineID INT Foreign Key (FKDisciplineID) References Discipline(DisciplineID),
-
-TimeManageID   INT PRIMARY KEY Identity NOT NULL,
-);
-
-/***********************************************/
-
-create table SupervisedGroup(
-FKTeacherID INT Foreign Key (FKTeacherID) References Teacher(TeacherID),
-FKSpecializationID INT Foreign Key (FKSpecializationID) References Specialization(SpecializationID),
-
-SupervisedGroupID   INT PRIMARY KEY Identity NOT NULL,
-GroupName   NVARChar(50) NOT NULL,
-StudentsCount int not null
-);
 
 create table Grade(
 FKSupervisedGroupID INT Foreign Key (FKSupervisedGroupID) References SupervisedGroup(SupervisedGroupID),
@@ -303,14 +329,14 @@ VALUES (1, 'admin1', 'password1'),
        (6, 'admin6', 'password6'),
        (7, 'admin7', 'password7');
 
-	   INSERT INTO Projects (FKAdminID, TypeOfProject)
-VALUES (1, 'Исследовательский проект 1'),
-       (2, 'Образовательный проект 1'),
-       (3, 'Научный проект 1'),
-	   (4, 'Исследовательский проект 2'),
-       (5, 'Образовательный проект 2'),
-       (6, 'Научный проект 2'),
-       (7, 'Исследовательский проект 3');
+	   INSERT INTO Projects (FKAdminID, TypeOfProject, Status)
+VALUES (1, 'Исследовательский проект 1', 'В разработке'),
+       (2, 'Образовательный проект 1', 'В разработке'),
+       (3, 'Научный проект 1', 'Завершен'),
+	   (4, 'Исследовательский проект 2', 'В разработке'),
+       (5, 'Образовательный проект 2', 'Завершен'),
+       (6, 'Научный проект 2', 'Завершен'),
+       (7, 'Исследовательский проект 3', 'В разработке');
 
 INSERT INTO EducationalMaterials (FKAdminID, MaterialType, MaterialName, MaterialAutor, PublicationYear)
 VALUES (1, 'Учебник', 'Математика для начинающих', 'Иванов И.И.', '2022-01-15'),
@@ -402,14 +428,14 @@ VALUES ('Информационные системы и технологии'),
        ('Программное обеспечение информационных технологий');
 
 
-INSERT INTO Discipline (DisciplineName, AwarageTime)
-VALUES ('Базы данных', 90),
-       ('Программирование для сети интернет', 120),
-       ('Программирование в .Net', 60),
-	   ('Системное программирование', 90),
-       ('Объектно-ориентированные технологии программирования и стандарты проектирования', 120),
-       ('Базы данных', 60),
-       ('Термодинамика', 90);
+INSERT INTO Discipline (DisciplineName)
+VALUES ('Базы данных'),
+       ('Программирование для сети интернет'),
+       ('Программирование в .Net'),
+	   ('Системное программирование'),
+       ('Объектно-ориентированные технологии программирования и стандарты проектирования'),
+       ('Базы данных'),
+       ('Термодинамика');
 
 INSERT INTO TypeWork (TypeWorkName)
 VALUES ('Лекция'),
@@ -429,14 +455,25 @@ VALUES (1, 1),
        (7, 3),
        (7, 4);
 
-INSERT INTO TimeManage (FKTeacherID, FKTypeWorkID, FKDisciplineID)
-VALUES (1, 1, 1),
-       (2, 2, 2),
-       (3, 3, 3),
-	   (4, 1, 1),
-       (5, 2, 2),
-       (6, 3, 3),
-       (7, 1, 4);
+--INSERT INTO TimeManage (FKTeacherID, FKTypeWorkID, FKDisciplineID, AwarageTime, FKGroupID)
+--VALUES (1, 1, 1, 10, 1),
+--       (2, 2, 2, 20, 2),
+--       (3, 3, 3, 30, 3),
+--       (4, 1, 1, 40, 4),
+--       (5, 2, 2, 50, 5),
+--       (6, 3, 3, 60, 6),
+--       (7, 1, 4, 70, 7);
+
+INSERT INTO TimeManage (FKTeacherID, FKTypeWork_Specialization_DisciplineID, AwarageTime, FKGroupID)
+VALUES (1, 1, 10, 1),
+       (2, 2, 20, 2),
+       (3, 3, 30, 3),
+       (4, 1, 40, 4),
+       (5, 2, 50, 5),
+       (6, 3, 60, 6),
+       (7, 4, 70, 7);
+
+
 
 INSERT INTO SupervisedGroup (FKTeacherID, FKSpecializationID, GroupName, StudentsCount)
 VALUES (1, 1, 'СТ-1', 25),
@@ -733,7 +770,7 @@ SET TypeOfProject = 'Исследовательский проект 3'
 WHERE ProjectsID = 7;
 
 
-
+Drop trigger ManageProjectStatus;
 
 
 
@@ -804,3 +841,210 @@ END;
 -- Пример вставки данных, вызывающий триггер
 INSERT INTO Grade (FKSupervisedGroupID, FKDisciplineID, FKTypeWorkID, AverageRating)
 VALUES (1, 2, 3, 11); -- Это вызовет ошибку из-за оценки 11
+
+
+
+
+
+
+
+
+
+
+
+ALTER TABLE TimeManage
+ADD FKGroupID INT FOREIGN KEY REFERENCES SupervisedGroup(SupervisedGroupID)
+
+CREATE PROCEDURE GetTeacherDisciplines_v3 @TeacherID INT AS
+BEGIN
+    SELECT 
+        D.DisciplineName, 
+        TW.TypeWorkName, 
+        S.SpecializationName, 
+        TM.AwarageTime,
+        SG.GroupName
+    FROM 
+        TimeManage TM
+    INNER JOIN 
+        Discipline D ON TM.FKDisciplineID = D.DisciplineID
+    INNER JOIN 
+        TypeWork TW ON TM.FKTypeWorkID = TW.TypeWorkID
+    INNER JOIN 
+        Specialization_Discipline SD ON D.DisciplineID = SD.FKDisciplineID
+    INNER JOIN 
+        Specialization S ON SD.FKSpecializationID = S.SpecializationID
+    INNER JOIN 
+        SupervisedGroup SG ON TM.FKGroupID = SG.SupervisedGroupID
+    WHERE 
+        TM.FKTeacherID = @TeacherID
+END
+
+EXEC GetTeacherDisciplines_v3 @TeacherID = 1
+
+
+
+
+
+
+
+
+
+create table Person(
+PersonID INT  NOT NULL PRIMARY KEY IDENTITY, 
+FirstName  NVARChar(50) NOT NULL,
+LastName   NVARChar(50) NOT NULL,
+Patronymic NVARChar(50)
+);
+
+
+
+create table Post(
+PostID   INT  NOT NULL PRIMARY KEY IDENTITY, 
+PostName  NVARChar(50) NOT NULL,
+);
+
+create table Teacher(
+FKPostID INT Foreign Key (FKPostID) References Post(PostID),
+FKPersonID  INT  NOT NULL REFERENCES Person (PersonID) on delete cascade,
+
+TeacherID INT  NOT NULL PRIMARY KEY IDENTITY, 
+Login  NVARChar(50) NOT NULL,
+Password   NVARChar(50) NOT NULL
+);
+
+
+/*-----------------------*/
+
+create table Specialization(
+SpecializationID INT  NOT NULL PRIMARY KEY IDENTITY,
+SpecializationName NVARChar(50) NOT NULL
+);
+
+create table Discipline(
+DisciplineID   INT  NOT NULL PRIMARY KEY IDENTITY,
+DisciplineName  NVARChar(max) NOT NULL,
+-- AwarageTime INT NOT NULL  /*NVARChar(50)*/
+);
+
+create table TypeWork(
+TypeWorkID INT  NOT NULL PRIMARY KEY IDENTITY,
+TypeWorkName NVARChar(50) NOT NULL
+);
+
+create table Specialization_Discipline(
+FKSpecializationID INT Foreign Key (FKSpecializationID) References Specialization(SpecializationID),
+FKDisciplineID INT Foreign Key (FKDisciplineID) References Discipline(DisciplineID),
+
+Specialization_DisciplineID INT  NOT NULL PRIMARY KEY IDENTITY
+
+);
+
+CREATE TABLE TypeWork_Specialization_Discipline(
+    TypeWork_Specialization_DisciplineID INT NOT NULL PRIMARY KEY IDENTITY,
+    FKTypeWorkID INT FOREIGN KEY (FKTypeWorkID) REFERENCES TypeWork(TypeWorkID),
+    FKSpecialization_DisciplineID INT FOREIGN KEY (FKSpecialization_DisciplineID) REFERENCES Specialization_Discipline(Specialization_DisciplineID)
+);
+
+
+
+
+drop table TimeManage;
+
+--create table TimeManage(
+--FKTeacherID INT Foreign Key (FKTeacherID) References Teacher(TeacherID),
+--FKTypeWorkID   INT Foreign Key (FKTypeWorkID) References TypeWork(TypeWorkID),
+--FKDisciplineID INT Foreign Key (FKDisciplineID) References Discipline(DisciplineID),
+
+--TimeManageID   INT PRIMARY KEY Identity NOT NULL,
+--AwarageTime int
+--);
+--ALTER TABLE TimeManage
+--ADD FKGroupID INT FOREIGN KEY REFERENCES SupervisedGroup(SupervisedGroupID)
+
+
+CREATE TABLE TimeManage(
+    FKTeacherID INT FOREIGN KEY (FKTeacherID) REFERENCES Teacher(TeacherID),
+    FKTypeWork_Specialization_DisciplineID INT FOREIGN KEY (FKTypeWork_Specialization_DisciplineID) REFERENCES TypeWork_Specialization_Discipline(TypeWork_Specialization_DisciplineID),
+    TimeManageID INT PRIMARY KEY IDENTITY NOT NULL,
+    AwarageTime INT,
+    FKGroupID INT FOREIGN KEY REFERENCES SupervisedGroup(SupervisedGroupID)
+);
+
+
+
+create table SupervisedGroup(
+FKTeacherID INT Foreign Key (FKTeacherID) References Teacher(TeacherID),
+FKSpecializationID INT Foreign Key (FKSpecializationID) References Specialization(SpecializationID),
+
+SupervisedGroupID   INT PRIMARY KEY Identity NOT NULL,
+GroupName   NVARChar(50) NOT NULL,
+StudentsCount int not null
+);
+
+---- Удалить столбец AwarageTime из таблицы Discipline
+--ALTER TABLE Discipline
+--DROP COLUMN AwarageTime
+
+---- Добавить столбец AwarageTime в таблицу TimeManage
+--ALTER TABLE TimeManage
+--ADD AwarageTime INT NOT NULL
+
+
+
+
+
+
+
+drop procedure GetTeacherDisciplines;
+
+CREATE PROCEDURE GetTeacherDisciplines @TeacherID INT AS
+BEGIN
+    SELECT 
+        D.DisciplineName, 
+        TW.TypeWorkName, 
+        S.SpecializationName, 
+        TM.AwarageTime, 
+        SG.GroupName
+    FROM TimeManage TM
+    INNER JOIN Teacher T ON TM.FKTeacherID = T.TeacherID
+    INNER JOIN TypeWork_Specialization_Discipline TWSD ON TM.FKTypeWork_Specialization_DisciplineID = TWSD.TypeWork_Specialization_DisciplineID
+    INNER JOIN TypeWork TW ON TWSD.FKTypeWorkID = TW.TypeWorkID
+    INNER JOIN Specialization_Discipline SD ON TWSD.FKSpecialization_DisciplineID = SD.Specialization_DisciplineID
+    INNER JOIN Discipline D ON SD.FKDisciplineID = D.DisciplineID
+    INNER JOIN Specialization S ON SD.FKSpecializationID = S.SpecializationID
+    INNER JOIN SupervisedGroup SG ON TM.FKGroupID = SG.SupervisedGroupID
+    WHERE T.TeacherID = @TeacherID
+END
+
+EXEC GetTeacherDisciplines @TeacherID = 1
+
+
+
+
+
+
+/***********************************************/
+INSERT INTO TypeWork_Specialization_Discipline (FKTypeWorkID, FKSpecialization_DisciplineID)
+VALUES (1, 1),
+       (2, 2),
+       (3, 3),
+       (1, 4),
+       (2, 5),
+       (3, 6),
+       (1, 7),
+       (2, 8),
+       (3, 9),
+       (1, 10),
+       (2, 11),
+
+	   (2, 1);
+
+
+
+--- Тест
+
+INSERT INTO TypeWork_Specialization_Discipline (FKTypeWorkID, FKSpecialization_DisciplineID)
+VALUES (2, 1);
+
+INSERT INTO TimeManage (FKTeacherID, FKTypeWork_Specialization_DisciplineID, AwarageTime, FKGroupID)
+VALUES (1, 12, 10, 1)
