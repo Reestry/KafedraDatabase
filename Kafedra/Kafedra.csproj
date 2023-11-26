@@ -71,6 +71,9 @@
     <Compile Include="Study\Teacher\TeacherWindows\AddTeacherWindow.xaml.cs">
       <DependentUpon>AddTeacherWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Study\Teacher\TeacherWindows\TeacherAssignWindow.xaml.cs">
+      <DependentUpon>TeacherAssignWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="AddMaterialWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -156,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Study\Teacher\TeacherWindows\AddTeacherWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Study\Teacher\TeacherWindows\TeacherAssignWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

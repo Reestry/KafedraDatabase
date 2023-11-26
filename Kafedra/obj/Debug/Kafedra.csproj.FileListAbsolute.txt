@@ -70,3 +70,5 @@ D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherPage.g.
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherPage.baml
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherWindows\AddTeacherWindow.g.cs
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherWindows\AddTeacherWindow.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherWindows\TeacherAssignWindow.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherWindows\TeacherAssignWindow.baml

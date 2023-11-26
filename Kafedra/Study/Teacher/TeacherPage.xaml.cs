@@ -23,6 +23,8 @@ namespace Kafedra.Study.Teacher
     /// </summary>
     public partial class TeacherPage : Page
     {
+
+        private int _teacherId;
         public TeacherPage()
         {
             InitializeComponent();
@@ -116,6 +118,7 @@ namespace Kafedra.Study.Teacher
             if (TeachersComboBox.SelectedValue != null)
             {
                 int teacherId = (int)TeachersComboBox.SelectedValue;
+                _teacherId = teacherId;
                 FillDataGrid(teacherId);
             }
         }
@@ -161,6 +164,15 @@ namespace Kafedra.Study.Teacher
             }
         }
 
+        private void AssignTeacher_Click(object sender, RoutedEventArgs e)
+        {
+            TeacherAssignWindow TeacherAssignWindow = new TeacherAssignWindow(_teacherId);
+            TeacherAssignWindow.ShowDialog();
+            Update();
+
+            TeacherAssignWindow.Closed += UpdateOnClose;
+        }
         #endregion
+
     }
 }

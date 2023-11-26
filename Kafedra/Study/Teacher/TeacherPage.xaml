@@ -29,6 +29,10 @@
             </TabItem>
             <TabItem Header="Рабочее время">
                 <Grid Background="#FF1A1A1A" Margin="0,0,-4,0" Height="460">
+
+                    <Button Content="Закрепить" Click="AssignTeacher_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Margin="246,10,325,428"/>
+
+
                     <ComboBox x:Name="TeachersComboBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="207" SelectionChanged="TeachersComboBox_SelectionChanged"/>
                     <DataGrid Name="_teachers_disciplinesGrid" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Height="282" Width="764" SelectionChanged="dataGrid1_SelectionChanged">
                         <DataGrid.ContextMenu>
