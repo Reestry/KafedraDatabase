@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\_________KafedraCourse\Kafedra\Kafedra\App.xaml
-12-143957658
+141908570685
 
-171313013118
+191732694659
 13-38814620
-AddMaterialWindow.xaml;AdminPage.xaml;EditMaterialWindow.xaml;EducationMaterialsPage.xaml;EventsAddingWindows\AddEventWindow.xaml;EventsAddingWindows\AddGuestWindow.xaml;EventsAddingWindows\AddParticipantWindow.xaml;EventsAddingWindows\EditEventWindow.xaml;EventsControllerPage.xaml;MainWindow.xaml;Projects.xaml;ProjectsWindows\ProjectAddWindow.xaml;
+AddMaterialWindow.xaml;AdminPage.xaml;EditMaterialWindow.xaml;EducationMaterialsPage.xaml;EventsAddingWindows\AddEventWindow.xaml;EventsAddingWindows\AddGuestWindow.xaml;EventsAddingWindows\AddParticipantWindow.xaml;EventsAddingWindows\EditEventWindow.xaml;EventsControllerPage.xaml;MainWindow.xaml;Projects.xaml;ProjectsWindows\ProjectAddWindow.xaml;Study\Teacher\TeacherPage.xaml;Study\Teacher\TeacherWindows\AddTeacherWindow.xaml;
 
 False
 

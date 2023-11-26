@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Kafedra.Study.Teacher;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Kafedra
@@ -27,6 +28,11 @@ namespace Kafedra
         private void Projects_Click(object sender, RoutedEventArgs e)
         {
             MyFrame.Content = new Projects();
+        }
+
+        private void Teachers_Click(object sender, RoutedEventArgs e)
+        {
+            MyFrame.Content = new TeacherPage();
         }
     }
 }

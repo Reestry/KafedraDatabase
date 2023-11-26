@@ -47,6 +47,15 @@ namespace Kafedra
 
         #region Participant
 
+        private void DataGrid_LayoutUpdated(object sender, EventArgs e)
+        {
+            // Скройте столбец Events_ParticipantsID
+            if (dataGrid.Columns.Count > 0)
+            {
+                dataGrid.Columns[0].Visibility = Visibility.Hidden;
+            }
+        }
+
         private void LoadParticipants()
         {
             participantsComboBox.Items.Clear();
@@ -209,14 +218,7 @@ namespace Kafedra
 
         }
 
-        private void DataGrid_LayoutUpdated(object sender, EventArgs e)
-        {
-            // Скройте столбец Events_ParticipantsID
-            if (dataGrid.Columns.Count > 0)
-            {
-                dataGrid.Columns[0].Visibility = Visibility.Hidden;
-            }
-        }
+
 
         #endregion
 

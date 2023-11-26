@@ -66,3 +66,7 @@ D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Projects.g.cs
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Projects.baml
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\ProjectsWindows\ProjectAddWindow.g.cs
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\ProjectsWindows\ProjectAddWindow.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherPage.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherPage.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherWindows\AddTeacherWindow.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherWindows\AddTeacherWindow.baml
