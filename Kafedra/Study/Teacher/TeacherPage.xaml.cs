@@ -25,6 +25,7 @@ namespace Kafedra.Study.Teacher
     {
 
         private int _teacherId;
+
         public TeacherPage()
         {
             InitializeComponent();
