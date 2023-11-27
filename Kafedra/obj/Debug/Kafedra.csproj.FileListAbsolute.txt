@@ -72,3 +72,9 @@ D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherWindows
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherWindows\AddTeacherWindow.baml
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherWindows\TeacherAssignWindow.g.cs
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherWindows\TeacherAssignWindow.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Disciplines\DisciplinesPage.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Disciplines\DisciplinesPage.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Disciplines\AddingWindows\SpecializationWindow.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Disciplines\AddingWindows\SpecializationWindow.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Disciplines\AddingWindows\DisciplineWindow.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Disciplines\AddingWindows\DisciplineWindow.baml

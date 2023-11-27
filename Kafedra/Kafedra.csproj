@@ -65,6 +65,15 @@
       <DependentUpon>ProjectAddWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SQLConnection.cs" />
+    <Compile Include="Study\Disciplines\AddingWindows\DisciplineWindow.xaml.cs">
+      <DependentUpon>DisciplineWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Study\Disciplines\AddingWindows\SpecializationWindow.xaml.cs">
+      <DependentUpon>SpecializationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Study\Disciplines\DisciplinesPage.xaml.cs">
+      <DependentUpon>DisciplinesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Study\Teacher\TeacherPage.xaml.cs">
       <DependentUpon>TeacherPage.xaml</DependentUpon>
     </Compile>
@@ -151,6 +160,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProjectsWindows\ProjectAddWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Study\Disciplines\AddingWindows\DisciplineWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Study\Disciplines\AddingWindows\SpecializationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Study\Disciplines\DisciplinesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
