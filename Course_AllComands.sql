@@ -157,15 +157,21 @@ END
 
 ----- Кураторство
 
-CREATE PROCEDURE GetGroupsByTeacher @TeacherID INT AS
-BEGIN
-    SELECT sg.GroupName, sg.StudentsCount
-    FROM Teacher t
-    INNER JOIN SupervisedGroup sg ON t.TeacherID = sg.FKTeacherID
-    WHERE t.TeacherID = @TeacherID
-END
+drop PROCEDURE GetGroupsByTeacher;
 
-EXEC GetGroupsByTeacher @TeacherID = 6;
+
+CREATE PROCEDURE GetGroupsByTeacher
+    @TeacherID INT
+AS
+BEGIN
+    SELECT SG.SupervisedGroupID, SG.GroupName, SG.StudentsCount
+    FROM SupervisedGroup SG
+    WHERE SG.FKTeacherID = @TeacherID;
+END;
+
+
+
+EXEC GetGroupsByTeacher @TeacherID = 1;
 
 
 

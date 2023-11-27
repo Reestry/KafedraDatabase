@@ -37,6 +37,7 @@ namespace Kafedra.Study.Teacher
         {
             FillDataGrid();
             FillTeachersComboBox();
+            FillSupervisedGroupComboBox();
         }
 
         #region AddTeacher
@@ -228,13 +229,131 @@ namespace Kafedra.Study.Teacher
         #endregion
 
         #region SupGroup
+
+        private int GroupID;
         private void AssignSupGroup_Click(object sender, RoutedEventArgs e)
         {
+            // Получаем выбранного преподавателя и выбранную группу
+            var selectedTeacherID = SupTeachersComboBox.SelectedValue;
+            var selectedGroupID = GroupID;
 
+            // Проверяем, выбрал ли пользователь элементы
+            if (selectedTeacherID == null || selectedGroupID == null)
+            {
+                MessageBox.Show("Пожалуйста, выберите преподавателя и группу.");
+                return;
+            }
+
+            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("AssignGroupToTeacher", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@TeacherID", (int)selectedTeacherID));
+                    command.Parameters.Add(new SqlParameter("@SupervisedGroupID", (int)selectedGroupID));
+
+                    command.ExecuteNonQuery();
+                }
+            }
+            TeachersComboBox_SelectionChanged1(null, null);
+        }
+
+
+
+        private void TeachersComboBox_SelectionChanged1(object sender, SelectionChangedEventArgs e)
+        {
+            // Получаем выбранного преподавателя
+            var selectedTeacherID = (int)SupTeachersComboBox.SelectedValue;
+
+            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("GetGroupsByTeacher", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@TeacherID", selectedTeacherID));
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+
+                        // Скрываем столбец SupervisedGroupID
+                        _teachers_Group_ass.AutoGeneratingColumn += (s, args) =>
+                        {
+                            if (args.PropertyName == "SupervisedGroupID")
+                            {
+                                args.Cancel = true;
+                            }
+                        };
+
+                        _teachers_Group_ass.ItemsSource = dataTable.DefaultView;
+                    }
+                }
+            }
+        }
+
+
+        public void FillSupervisedGroupComboBox()
+        {
+            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT SupervisedGroupID, GroupName, StudentsCount FROM SupervisedGroup INNER JOIN Teacher ON SupervisedGroup.FKTeacherID = Teacher.TeacherID", connection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataTable dataTable = new DataTable("SupervisedGroups");
+                dataAdapter.Fill(dataTable);
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    string groupInfo = row["GroupName"].ToString() + " (" + row["StudentsCount"].ToString() + " students)";
+                    row["GroupName"] = groupInfo;
+                }
+                SupGroupComboBox.ItemsSource = dataTable.DefaultView;
+                SupGroupComboBox.DisplayMemberPath = "GroupName";
+                SupGroupComboBox.SelectedValuePath = "SupervisedGroupID";
+            }
+        }
+        private void GroupsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedGroupID = (int)SupGroupComboBox.SelectedValue;
+            GroupID = selectedGroupID;
+        }
+
+
+
+        private void DeleteAssignSupGroup_Click(object sender, RoutedEventArgs e)
+        {
+            // Получаем выбранную группу из DataGrid
+            var selectedGroup = _teachers_Group_ass.SelectedItem as DataRowView;
+            if (selectedGroup == null)
+            {
+                MessageBox.Show("Пожалуйста, выберите группу.");
+                return;
+            }
+
+            var selectedGroupID = (int)selectedGroup["SupervisedGroupID"];
+
+            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("RemoveGroupFromTeacher", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@SupervisedGroupID", selectedGroupID));
+
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            TeachersComboBox_SelectionChanged1(null, null);
         }
 
         #endregion
 
-
     }
+
 }

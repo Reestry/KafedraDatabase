@@ -50,8 +50,8 @@
             <TabItem Header="Кураторство">
                 <Grid Background="#FF1A1A1A" Margin="0,0,-4,0" Height="460">
 
-                    <ComboBox x:Name="SupTeachersComboBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="207" SelectionChanged="TeachersComboBox_SelectionChanged"/>
-                    <ComboBox x:Name="SupGroupComboBox" HorizontalAlignment="Left" Margin="239,10,0,0" VerticalAlignment="Top" Width="207" SelectionChanged="TeachersComboBox_SelectionChanged"/>
+                    <ComboBox x:Name="SupTeachersComboBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="207" SelectionChanged="TeachersComboBox_SelectionChanged1"/>
+                    <ComboBox x:Name="SupGroupComboBox" HorizontalAlignment="Left" Margin="239,10,0,0" VerticalAlignment="Top" Width="207" SelectionChanged="GroupsComboBox_SelectionChanged"/>
                     <Button Content="Закрепить" Click="AssignSupGroup_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Margin="470,10,101,428"/>
 
                     <DataGrid Name="_teachers_Group_ass" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Height="282" Width="764" SelectionChanged="dataGrid1_SelectionChanged">
@@ -63,6 +63,7 @@
                             </ContextMenu>
                         </DataGrid.ContextMenu>
                     </DataGrid>
+                    <Button Content="Удалить закрпление" Click="DeleteAssignSupGroup_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Margin="470,37,101,401"/>
 
 
 
