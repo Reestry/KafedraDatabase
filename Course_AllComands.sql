@@ -192,3 +192,75 @@ BEGIN
     SET FKTeacherID = NULL
     WHERE SupervisedGroupID = @SupervisedGroupID;
 END;
+
+
+----------------------------------
+-- Специальности/дисциплины и т.д
+
+-- Функция для создания записи
+CREATE PROCEDURE CreateSpecialization
+    @SpecializationName NVARCHAR(50)
+AS
+BEGIN
+    INSERT INTO Specialization(SpecializationName)
+    VALUES (@SpecializationName)
+END
+GO
+
+-- Функция для удаления записи
+CREATE PROCEDURE DeleteSpecialization
+    @SpecializationID INT
+AS
+BEGIN
+    DELETE FROM Specialization
+    WHERE SpecializationID = @SpecializationID
+END
+GO
+
+-- Функция для редактирования записи
+CREATE PROCEDURE UpdateSpecialization
+    @SpecializationID INT,
+    @SpecializationName NVARCHAR(50)
+AS
+BEGIN
+    UPDATE Specialization
+    SET SpecializationName = @SpecializationName
+    WHERE SpecializationID = @SpecializationID
+END
+GO
+
+
+
+---------------------------Дисциплины
+
+-- Функция для создания записи
+CREATE PROCEDURE CreateDiscipline
+    @DisciplineName NVARCHAR(MAX)
+AS
+BEGIN
+    INSERT INTO Discipline(DisciplineName)
+    VALUES (@DisciplineName)
+END
+GO
+
+-- Функция для удаления записи
+CREATE PROCEDURE DeleteDiscipline
+    @DisciplineID INT
+AS
+BEGIN
+    DELETE FROM Discipline
+    WHERE DisciplineID = @DisciplineID
+END
+GO
+
+-- Функция для редактирования записи
+CREATE PROCEDURE UpdateDiscipline
+    @DisciplineID INT,
+    @DisciplineName NVARCHAR(MAX)
+AS
+BEGIN
+    UPDATE Discipline
+    SET DisciplineName = @DisciplineName
+    WHERE DisciplineID = @DisciplineID
+END
+GO
