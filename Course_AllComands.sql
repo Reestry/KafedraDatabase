@@ -81,14 +81,20 @@ END
 
 
 
+
+drop PROCEDURE GetTeacherDisciplines;
+
+
 CREATE PROCEDURE GetTeacherDisciplines @TeacherID INT AS
 BEGIN
     SELECT 
+        TWSD.TypeWork_Specialization_DisciplineID,
         D.DisciplineName, 
         TW.TypeWorkName, 
         S.SpecializationName, 
         TM.AwarageTime, 
-        SG.GroupName
+        SG.GroupName,
+        TM.FKGroupID AS GroupID  -- Добавлен этот столбец
     FROM TimeManage TM
     INNER JOIN Teacher T ON TM.FKTeacherID = T.TeacherID
     INNER JOIN TypeWork_Specialization_Discipline TWSD ON TM.FKTypeWork_Specialization_DisciplineID = TWSD.TypeWork_Specialization_DisciplineID
@@ -99,6 +105,8 @@ BEGIN
     INNER JOIN SupervisedGroup SG ON TM.FKGroupID = SG.SupervisedGroupID
     WHERE T.TeacherID = @TeacherID
 END
+
+
 
 EXEC GetTeacherDisciplines @TeacherID = 1
 
@@ -133,3 +141,31 @@ BEGIN
     INNER JOIN Discipline D ON SD.FKDisciplineID = D.DisciplineID
     INNER JOIN Specialization S ON SD.FKSpecializationID = S.SpecializationID
 END
+
+
+
+CREATE PROCEDURE RemoveTeacherAssignment
+    @TeacherID INT,
+    @TypeWork_Specialization_DisciplineID INT,
+    @GroupID INT
+AS
+BEGIN
+    DELETE FROM TimeManage
+    WHERE FKTeacherID = @TeacherID AND FKTypeWork_Specialization_DisciplineID = @TypeWork_Specialization_DisciplineID AND FKGroupID = @GroupID;
+END
+
+
+----- Кураторство
+
+CREATE PROCEDURE GetGroupsByTeacher @TeacherID INT AS
+BEGIN
+    SELECT sg.GroupName, sg.StudentsCount
+    FROM Teacher t
+    INNER JOIN SupervisedGroup sg ON t.TeacherID = sg.FKTeacherID
+    WHERE t.TeacherID = @TeacherID
+END
+
+EXEC GetGroupsByTeacher @TeacherID = 6;
+
+
+

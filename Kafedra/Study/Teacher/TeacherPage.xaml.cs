@@ -113,7 +113,6 @@ namespace Kafedra.Study.Teacher
 
         #region Disciplines
 
-
         private void TeachersComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (TeachersComboBox.SelectedValue != null)
@@ -145,6 +144,12 @@ namespace Kafedra.Study.Teacher
                 TeachersComboBox.ItemsSource = dataTable.DefaultView;
                 TeachersComboBox.DisplayMemberPath = "FirstName";
                 TeachersComboBox.SelectedValuePath = "TeacherID";
+
+                SupTeachersComboBox.ItemsSource = dataTable.DefaultView;
+                SupTeachersComboBox.DisplayMemberPath = "FirstName";
+                SupTeachersComboBox.SelectedValuePath = "TeacherID";
+
+
             }
         }
 
@@ -160,10 +165,32 @@ namespace Kafedra.Study.Teacher
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
                 DataTable dataTable = new DataTable("TeacherDisciplines");
                 dataAdapter.Fill(dataTable);
+
+                if (!dataTable.Columns.Contains("TypeWork_Specialization_DisciplineID"))
+                {
+                    DataColumn column = new DataColumn("TypeWork_Specialization_DisciplineID", typeof(int));
+                    dataTable.Columns.Add(column);
+                }
+
+                if (!dataTable.Columns.Contains("GroupID"))
+                {
+                    DataColumn column = new DataColumn("GroupID", typeof(int));
+                    dataTable.Columns.Add(column);
+                }
+
+                _teachers_disciplinesGrid.AutoGeneratingColumn += (sender, e) =>
+                {
+                    if (e.PropertyName == "TypeWork_Specialization_DisciplineID" || e.PropertyName == "GroupID")
+                    {
+                        e.Cancel = true;
+                    }
+                };
+
                 _teachers_disciplinesGrid.ItemsSource = dataTable.DefaultView;
                 dataAdapter.Update(dataTable);
             }
         }
+
 
         private void AssignTeacher_Click(object sender, RoutedEventArgs e)
         {
@@ -173,7 +200,41 @@ namespace Kafedra.Study.Teacher
 
             TeacherAssignWindow.Closed += UpdateOnClose;
         }
+
+        private void DeleteAssignTeacher_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView rowView = _teachers_disciplinesGrid.SelectedItem as DataRowView;
+            if (rowView != null)
+            {
+                int teacherId = _teacherId;
+                int typeWork_Specialization_DisciplineID = Convert.ToInt32(rowView["TypeWork_Specialization_DisciplineID"]);
+                int groupId = Convert.ToInt32(rowView["GroupID"]);
+
+                using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("RemoveTeacherAssignment", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@TeacherID", teacherId);
+                    command.Parameters.AddWithValue("@TypeWork_Specialization_DisciplineID", typeWork_Specialization_DisciplineID);
+                    command.Parameters.AddWithValue("@GroupID", groupId);
+                    command.ExecuteNonQuery();
+                }
+
+                FillDataGrid(teacherId);
+            }
+        }
+
         #endregion
+
+        #region SupGroup
+        private void AssignSupGroup_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion
+
 
     }
 }

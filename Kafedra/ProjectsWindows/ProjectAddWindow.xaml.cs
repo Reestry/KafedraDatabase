@@ -28,7 +28,7 @@ namespace Kafedra.ProjectsWindows
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             string eventType = EventTypeTextBox.Text;
-            string status = (StatusComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
+            string status = (StatusComboBox.SelectedItem as ComboBoxItem).Content.ToString();
 
             // Выполните ваш запрос к базе данных с использованием eventType и status
 
