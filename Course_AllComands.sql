@@ -173,5 +173,22 @@ END;
 
 EXEC GetGroupsByTeacher @TeacherID = 1;
 
+CREATE PROCEDURE AssignGroupToTeacher
+    @TeacherID INT,
+    @SupervisedGroupID INT
+AS
+BEGIN
+    UPDATE SupervisedGroup
+    SET FKTeacherID = @TeacherID
+    WHERE SupervisedGroupID = @SupervisedGroupID;
+END;
 
 
+CREATE PROCEDURE RemoveGroupFromTeacher
+    @SupervisedGroupID INT
+AS
+BEGIN
+    UPDATE SupervisedGroup
+    SET FKTeacherID = NULL
+    WHERE SupervisedGroupID = @SupervisedGroupID;
+END;
