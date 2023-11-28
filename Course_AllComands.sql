@@ -126,6 +126,8 @@ END
 EXEC AssignTeacherToDiscipline @TeacherID = 1, @TypeWork_Specialization_DisciplineID = 3, @AwarageTime = 60, @GroupID = 2;
 
 
+drop procedure GetFullInfoForTypeWork_Specialization_Discipline
+
 CREATE PROCEDURE GetFullInfoForTypeWork_Specialization_Discipline
 AS
 BEGIN
@@ -134,7 +136,7 @@ BEGIN
         TW.TypeWorkName, 
         D.DisciplineName, 
         S.SpecializationName,
-        CONCAT(TW.TypeWorkName, ', ', D.DisciplineName, ', ', S.SpecializationName) AS FullInfo
+        CONCAT(S.SpecializationName, ', ',TW.TypeWorkName , ', ', D.DisciplineName ) AS FullInfo     
     FROM TypeWork_Specialization_Discipline TWSD
     INNER JOIN TypeWork TW ON TWSD.FKTypeWorkID = TW.TypeWorkID
     INNER JOIN Specialization_Discipline SD ON TWSD.FKSpecialization_DisciplineID = SD.Specialization_DisciplineID
@@ -262,5 +264,119 @@ BEGIN
     UPDATE Discipline
     SET DisciplineName = @DisciplineName
     WHERE DisciplineID = @DisciplineID
+END
+GO
+
+
+
+
+-- позволяет закрепить специальность за дисциплиной и тип работы за специализацией и дисциплиной в одном шаге
+CREATE PROCEDURE AssignWorkToSpecializationDiscipline
+    @FKSpecializationID INT,
+    @FKDisciplineID INT,
+    @FKTypeWorkID INT
+AS
+BEGIN
+    DECLARE @Specialization_DisciplineID INT
+
+    -- Создаем запись в таблице Specialization_Discipline
+    INSERT INTO Specialization_Discipline(FKSpecializationID, FKDisciplineID)
+    VALUES (@FKSpecializationID, @FKDisciplineID)
+
+    -- Получаем ID только что созданной записи
+    SET @Specialization_DisciplineID = SCOPE_IDENTITY()
+
+    -- Создаем запись в таблице TypeWork_Specialization_Discipline
+    INSERT INTO TypeWork_Specialization_Discipline(FKTypeWorkID, FKSpecialization_DisciplineID)
+    VALUES (@FKTypeWorkID, @Specialization_DisciplineID)
+END
+GO
+
+EXEC AssignWorkToSpecializationDiscipline @FKSpecializationID = 1, @FKDisciplineID = 1, @FKTypeWorkID = 1
+
+
+drop procedure GetDisciplinesAndTypeWorksForSpecialization
+
+--CREATE PROCEDURE GetDisciplinesAndTypeWorksForSpecialization
+--    @FKSpecializationID INT
+--AS
+--BEGIN
+--    SELECT 
+--        D.DisciplineName, 
+--        TW.TypeWorkName
+--    FROM 
+--        Specialization_Discipline SD 
+--        JOIN Discipline D ON SD.FKDisciplineID = D.DisciplineID
+--        JOIN TypeWork_Specialization_Discipline TWSD ON SD.Specialization_DisciplineID = TWSD.FKSpecialization_DisciplineID
+--        JOIN TypeWork TW ON TWSD.FKTypeWorkID = TW.TypeWorkID
+--    WHERE 
+--        SD.FKSpecializationID = @FKSpecializationID
+--END
+--GO
+
+--CREATE PROCEDURE GetDisciplinesAndTypeWorksForSpecialization
+--    @FKSpecializationID INT
+--AS
+--BEGIN
+--    SELECT 
+--        SD.FKSpecializationID,
+--        D.DisciplineID,
+--        TW.TypeWorkID,
+--        D.DisciplineName, 
+--        TW.TypeWorkName
+--    FROM 
+--        Specialization_Discipline SD 
+--        JOIN Discipline D ON SD.FKDisciplineID = D.DisciplineID
+--        JOIN TypeWork_Specialization_Discipline TWSD ON SD.Specialization_DisciplineID = TWSD.FKSpecialization_DisciplineID
+--        JOIN TypeWork TW ON TWSD.FKTypeWorkID = TW.TypeWorkID
+--    WHERE 
+--        SD.FKSpecializationID = @FKSpecializationID
+--END
+--GO
+
+CREATE PROCEDURE GetDisciplinesAndTypeWorksForSpecialization
+    @FKSpecializationID INT
+AS
+BEGIN
+    SELECT 
+        SD.FKSpecializationID,
+        SD.FKDisciplineID, 
+        TWSD.FKTypeWorkID,
+        D.DisciplineName, 
+        TW.TypeWorkName
+    FROM 
+        Specialization_Discipline SD 
+        JOIN Discipline D ON SD.FKDisciplineID = D.DisciplineID
+        JOIN TypeWork_Specialization_Discipline TWSD ON SD.Specialization_DisciplineID = TWSD.FKSpecialization_DisciplineID
+        JOIN TypeWork TW ON TWSD.FKTypeWorkID = TW.TypeWorkID
+    WHERE 
+        SD.FKSpecializationID = @FKSpecializationID
+END
+GO
+
+
+
+EXEC GetDisciplinesAndTypeWorksForSpecialization @FKSpecializationID = 3
+
+
+CREATE PROCEDURE UnassignWorkFromSpecializationDiscipline
+    @FKSpecializationID INT,
+    @FKDisciplineID INT,
+    @FKTypeWorkID INT
+AS
+BEGIN
+    -- Находим ID записи в таблице Specialization_Discipline
+    DECLARE @Specialization_DisciplineID INT
+    SELECT @Specialization_DisciplineID = Specialization_DisciplineID 
+    FROM Specialization_Discipline 
+    WHERE FKSpecializationID = @FKSpecializationID AND FKDisciplineID = @FKDisciplineID
+
+    -- Удаляем запись из таблицы TypeWork_Specialization_Discipline
+    DELETE FROM TypeWork_Specialization_Discipline 
+    WHERE FKTypeWorkID = @FKTypeWorkID AND FKSpecialization_DisciplineID = @Specialization_DisciplineID
+
+    -- Удаляем запись из таблицы Specialization_Discipline
+    DELETE FROM Specialization_Discipline 
+    WHERE Specialization_DisciplineID = @Specialization_DisciplineID
 END
 GO

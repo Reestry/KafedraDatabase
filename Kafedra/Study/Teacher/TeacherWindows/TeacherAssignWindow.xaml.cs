@@ -69,5 +69,10 @@ namespace Kafedra.Study.Teacher.TeacherWindows
                 }
             }
         }
+
+        private void TypeWork_Specialization_Discipline_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

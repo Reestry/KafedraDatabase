@@ -11,7 +11,7 @@
     <Grid>
 
         <TabControl>
-            <TabItem Header="Специальности">
+            <TabItem Header="Создание элементов">
                 <Grid Background="#FF1A1A1A" Margin="0,0,-4,0" Height="460">
 
 
@@ -37,7 +37,27 @@
 
                 </Grid>
             </TabItem>
+            <TabItem Header="Специальность -> Дисциплина">
+                <Grid Background="#FF1A1A1A" Margin="0,0,-4,0" Height="460">
 
+                    <ComboBox Name="SpecializationComboBox" DisplayMemberPath="SpecializationName" SelectedValuePath="SpecializationID" Margin="0,51,549,365" />
+                    <ComboBox Name="DisciplineComboBox" DisplayMemberPath="DisciplineName" SelectedValuePath="DisciplineID" Margin="214,51,314,365" />
+                    <ComboBox Name="TypeWorkComboBox" DisplayMemberPath="TypeWorkName" SelectedValuePath="TypeWorkID" Margin="449,51,151,365" />
+                    <Button Name="AssignButton" Content="Закрепить" Click="AssignButton_Click" Margin="621,51,21,365" />
+
+                    <DataGrid Name="Spec_disc_TypeGrid" HorizontalAlignment="Left" Margin="38,141,0,0" VerticalAlignment="Top" Height="221" Width="582" SelectionChanged="dataGrid1_SelectionChanged">
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Добавить" Click="AddDisciplineButton_Click"/>
+                                <MenuItem Header="Редактировать" Click="EditDisciplineButton_Click"/>
+                                <MenuItem Header="Удалить" Click="DeleteDisciplineButton_Click"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                    </DataGrid>
+                    <Button x:Name="DeleteAssignButton" Content="Удалить закрепление" Click="DeleteAssignButton_Click" Margin="621,100,21,316" />
+
+                </Grid>
+            </TabItem>
 
         </TabControl>
     </Grid>
