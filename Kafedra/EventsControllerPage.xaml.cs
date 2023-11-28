@@ -105,8 +105,6 @@ namespace Kafedra
                 adapter.Fill(dt);
                 dataGrid.ItemsSource = dt.DefaultView;
             }
-
-
         }
 
         private void AssignEventButton_Click(object sender, RoutedEventArgs e)
@@ -157,7 +155,11 @@ namespace Kafedra
             addEventWindow.ShowDialog();
             LoadEvents();
         }
-
+        /// <summary>
+        /// ///////////////////////////////////////////////////////////////////////////////
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EventEdt_Click(object sender, RoutedEventArgs e)
         {
 
@@ -168,6 +170,22 @@ namespace Kafedra
             EditEventWindow editEventWindow = new EditEventWindow(eventId);
             editEventWindow.Closed += EditEventWindow_Closed;
             editEventWindow.Show();
+        }
+
+        private void EditPartButton_Click(object sender, RoutedEventArgs e)
+        {
+            ComboBoxItem selectedEvent = (ComboBoxItem)participantsComboBox.SelectedItem;
+            if (selectedEvent == null)
+            {
+                MessageBox.Show("Выберите участника!");
+                return;
+            }
+
+            int eventId = (int)selectedEvent.Tag;
+
+                EditParticipantWindow EditParticipantWindow = new EditParticipantWindow(eventId);
+                EditParticipantWindow.Closed += EditEventWindow_Closed;
+                EditParticipantWindow.Show();
         }
 
         private void DeleteEventButton_Click(object sender, RoutedEventArgs e)
@@ -213,10 +231,7 @@ namespace Kafedra
             UpdateInfo();
         }
 
-        private void EditPartButton_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
 
 
 
@@ -324,7 +339,18 @@ namespace Kafedra
 
         private void EditGuestButton_Click(object sender, RoutedEventArgs e)
         {
+            ComboBoxItem selectedEvent = (ComboBoxItem)guestsComboBox.SelectedItem;
+            if (selectedEvent == null)
+            {
+                MessageBox.Show("Выберите гостя!");
+                return;
+            }
 
+            int eventId = (int)selectedEvent.Tag;
+
+            EditGuestWindow EditGuestWindow = new EditGuestWindow(eventId);
+            EditGuestWindow.Closed += EditEventWindow_Closed;
+            EditGuestWindow.Show();
         }
 
         private void DeleteGuestButton_Click(object sender, RoutedEventArgs e)

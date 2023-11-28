@@ -86,3 +86,11 @@ D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Group\AddingWindows\Gr
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Group\AddingWindows\GroupWindow.baml
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Group\AddingWindows\EditGroupWindow.g.cs
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Group\AddingWindows\EditGroupWindow.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Other\AddingWindows\AddAdminWindow.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Other\AddingWindows\EditAdminWindow.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Other\AddingWindows\AddAdminWindow.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Other\AddingWindows\EditAdminWindow.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\EventsAddingWindows\EditParticipantWindow.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\EventsAddingWindows\EditParticipantWindow.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\EventsAddingWindows\EditGuestWindow.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\EventsAddingWindows\EditGuestWindow.baml

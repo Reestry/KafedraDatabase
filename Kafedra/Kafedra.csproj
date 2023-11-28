@@ -58,6 +58,12 @@
     <Compile Include="EventsAddingWindows\AddGuestWindow.xaml.cs">
       <DependentUpon>AddGuestWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EventsAddingWindows\EditGuestWindow.xaml.cs">
+      <DependentUpon>EditGuestWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EventsAddingWindows\EditParticipantWindow.xaml.cs">
+      <DependentUpon>EditParticipantWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Projects.xaml.cs">
       <DependentUpon>Projects.xaml</DependentUpon>
     </Compile>
@@ -130,6 +136,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EventsAddingWindows\EditEventWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EventsAddingWindows\EditGuestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EventsAddingWindows\EditParticipantWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
