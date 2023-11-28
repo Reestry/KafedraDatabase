@@ -546,8 +546,6 @@ WHERE EventsID = 6;
 
 
 
-
-
 -- Создание триггера
 CREATE TRIGGER CheckGradeIntegrity
 ON Grade

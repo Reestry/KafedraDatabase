@@ -467,3 +467,105 @@ BEGIN
 END
 
 EXEC DeleteGroup @GroupID = 1
+
+
+
+
+
+----------------АДМИНЫ
+
+-- Вывод информации об админах
+CREATE PROCEDURE GetAdmins
+AS
+BEGIN
+    SELECT A.AdminID, A.Login, A.Password, P.FirstName, P.LastName, P.Patronymic
+    FROM Admin A
+    INNER JOIN Person P ON A.FKPersonID = P.PersonID;
+END
+GO
+
+
+-- Создание админа
+CREATE PROCEDURE CreateAdmin
+    @FirstName NVARCHAR(50),
+    @LastName NVARCHAR(50),
+    @Patronymic NVARCHAR(50),
+    @Login NVARCHAR(50),
+    @Password NVARCHAR(50)
+AS
+BEGIN
+    DECLARE @PersonID INT;
+
+    INSERT INTO Person(FirstName, LastName, Patronymic)
+    VALUES (@FirstName, @LastName, @Patronymic);
+
+    SET @PersonID = SCOPE_IDENTITY();
+
+    INSERT INTO Admin(FKPersonID, Login, Password)
+    VALUES (@PersonID, @Login, @Password);
+END
+GO
+
+-- Редактирование админа
+CREATE PROCEDURE EditAdmin
+    @AdminID INT,
+    @FirstName NVARCHAR(50),
+    @LastName NVARCHAR(50),
+    @Patronymic NVARCHAR(50),
+    @Login NVARCHAR(50),
+    @Password NVARCHAR(50)
+AS
+BEGIN
+    DECLARE @PersonID INT;
+
+    SELECT @PersonID = FKPersonID FROM Admin WHERE AdminID = @AdminID;
+
+    UPDATE Person
+    SET FirstName = @FirstName, LastName = @LastName, Patronymic = @Patronymic
+    WHERE PersonID = @PersonID;
+
+    UPDATE Admin
+    SET Login = @Login, Password = @Password
+    WHERE AdminID = @AdminID;
+END
+GO
+
+-- Удаление админа
+CREATE PROCEDURE DeleteAdmin
+    @AdminID INT
+AS
+BEGIN
+    DELETE FROM Admin
+    WHERE AdminID = @AdminID;
+END
+GO
+
+-- Триггер на дефолтные значения
+CREATE TRIGGER DefaultValues
+ON Person
+AFTER INSERT
+AS
+BEGIN
+    UPDATE Person
+    SET FirstName = ISNULL(FirstName, 'Default First Name'),
+        LastName = ISNULL(LastName, 'Default Last Name'),
+        Patronymic = ISNULL(Patronymic, 'Default Patronymic')
+    WHERE PersonID IN (SELECT PersonID FROM inserted);
+END
+GO
+
+
+-- Создание админа
+EXEC CreateAdmin @FirstName = 'Иван', @LastName = 'Иванов', @Patronymic = 'Иванович', @Login = 'ivanov', @Password = 'password123';
+
+
+
+-- Редактирование админа
+EXEC EditAdmin @AdminID = 1, @FirstName = 'Петр', @LastName = 'Петров', @Patronymic = 'Петрович', @Login = 'petrov', @Password = 'password456';
+
+-- Удаление админа
+EXEC DeleteAdmin @AdminID = 12;
+
+-- Вывод информации об админах
+EXEC GetAdmins;
+

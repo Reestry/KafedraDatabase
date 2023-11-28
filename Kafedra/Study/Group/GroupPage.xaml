@@ -10,7 +10,7 @@
 
     <Grid>
         <TabControl>
-            <TabItem Header="Добавить группу">
+            <TabItem Header="Админы">
                 <Grid Background="#FF1A1A1A" Margin="0,0,-4,0" Height="460">
                     <DataGrid Name="_groupDataGrade" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Height="282" Width="665" SelectionChanged="_groupDataGrade_SelectionChanged">
                         <DataGrid.ContextMenu>

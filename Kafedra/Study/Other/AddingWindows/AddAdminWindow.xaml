@@ -1,0 +1,41 @@
+﻿<Window x:Class="Kafedra.Study.Other.AddingWindows.AddAdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kafedra.Study.Other.AddingWindows"
+        mc:Ignorable="d"
+        Title="AddAdminWindow" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Имя" Grid.Row="0" />
+        <TextBox x:Name="firstNameTextBox" Grid.Row="1" />
+
+        <Label Content="Фамилия" Grid.Row="2" />
+        <TextBox x:Name="lastNameTextBox" Grid.Row="3" />
+
+        <Label Content="Отчество" Grid.Row="4" />
+        <TextBox x:Name="patronymicTextBox" Grid.Row="5" />
+
+        <Label Content="Логин" Grid.Row="6" />
+        <TextBox x:Name="loginTextBox" Grid.Row="7" />
+
+        <Label Content="Пароль" Grid.Row="8" />
+        <TextBox x:Name="passwordTextBox" Grid.Row="9" />
+
+        <Button Content="Сохранить" Click="Save_Click" Grid.Row="10" />
+    </Grid>
+</Window>
