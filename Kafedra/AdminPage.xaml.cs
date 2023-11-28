@@ -1,4 +1,6 @@
 ﻿using Kafedra.Study.Disciplines;
+using Kafedra.Study.Group;
+using Kafedra.Study.Other;
 using Kafedra.Study.Teacher;
 using System.Windows;
 using System.Windows.Controls;
@@ -39,6 +41,17 @@ namespace Kafedra
         private void Disciplines_Click(object sender, RoutedEventArgs e)
         {
             MyFrame.Content = new DisciplinesPage();
+        }
+
+        private void Grop_Click(object sender, RoutedEventArgs e)
+        {
+            MyFrame.Content = new GroupPage();
+        }
+
+        private void Other_Click(object sender, RoutedEventArgs e)
+        {
+            MyFrame.Content = new OtherPage();
+
         }
     }
 }

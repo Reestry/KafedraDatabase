@@ -78,3 +78,11 @@ D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Disciplines\AddingWind
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Disciplines\AddingWindows\SpecializationWindow.baml
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Disciplines\AddingWindows\DisciplineWindow.g.cs
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Disciplines\AddingWindows\DisciplineWindow.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Group\GroupPage.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Other\OtherPage.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Group\GroupPage.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Other\OtherPage.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Group\AddingWindows\GroupWindow.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Group\AddingWindows\GroupWindow.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Group\AddingWindows\EditGroupWindow.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Group\AddingWindows\EditGroupWindow.baml

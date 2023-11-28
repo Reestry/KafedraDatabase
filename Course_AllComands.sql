@@ -380,3 +380,90 @@ BEGIN
     WHERE Specialization_DisciplineID = @Specialization_DisciplineID
 END
 GO
+
+
+---- Группы
+
+drop procedure GetGroupInfo
+
+CREATE PROCEDURE GetGroupInfo
+    @GroupID INT
+AS
+BEGIN
+    SELECT 
+        g.SupervisedGroupID,
+        g.GroupName, 
+        g.StudentsCount, 
+        g.FKTeacherID,
+        t.Login AS TeacherLogin, 
+        p.FirstName,
+        p.LastName,
+        p.Patronymic,
+        g.FKSpecializationID,
+        s.SpecializationName
+    FROM 
+        SupervisedGroup g
+    INNER JOIN 
+        Teacher t ON g.FKTeacherID = t.TeacherID
+    INNER JOIN 
+        Person p ON t.FKPersonID = p.PersonID
+    INNER JOIN 
+        Specialization s ON g.FKSpecializationID = s.SpecializationID
+    WHERE 
+        g.SupervisedGroupID = @GroupID
+END
+
+EXEC GetGroupInfo @GroupID = 1
+
+
+
+
+
+
+
+
+
+CREATE PROCEDURE CreateNewGroup
+    @TeacherID INT,
+    @SpecializationID INT,
+    @GroupName NVARCHAR(50),
+    @StudentsCount INT
+AS
+BEGIN
+    INSERT INTO SupervisedGroup (FKTeacherID, FKSpecializationID, GroupName, StudentsCount)
+    VALUES (@TeacherID, @SpecializationID, @GroupName, @StudentsCount)
+END
+
+
+EXEC CreateNewGroup @TeacherID = 1, @SpecializationID = 1, @GroupName = 'Новая группа', @StudentsCount = 20
+
+
+CREATE PROCEDURE EditGroup
+    @GroupID INT,
+    @TeacherID INT = NULL,
+    @SpecializationID INT = NULL,
+    @GroupName NVARCHAR(50) = NULL,
+    @StudentsCount INT = NULL
+AS
+BEGIN
+    UPDATE SupervisedGroup
+    SET FKTeacherID = ISNULL(@TeacherID, FKTeacherID),
+        FKSpecializationID = ISNULL(@SpecializationID, FKSpecializationID),
+        GroupName = ISNULL(@GroupName, GroupName),
+        StudentsCount = ISNULL(@StudentsCount, StudentsCount)
+    WHERE SupervisedGroupID = @GroupID
+END
+
+
+EXEC EditGroup @GroupID = 1, @TeacherID = 2, @SpecializationID = 3, @GroupName = 'Новое имя группы', @StudentsCount = 25
+
+
+CREATE PROCEDURE DeleteGroup
+    @GroupID INT
+AS
+BEGIN
+    DELETE FROM SupervisedGroup
+    WHERE SupervisedGroupID = @GroupID
+END
+
+EXEC DeleteGroup @GroupID = 1

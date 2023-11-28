@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kafedra.Study.Teacher.TeacherWindows"
         mc:Ignorable="d"
-        Title="TeacherAssignWindow" Height="450" Width="450">
+        Title="TeacherAssignWindow" Height="450" Width="450" >
     <Grid x:Name="Group">
         <Label Content="TypeWork_Specialization_Discipline:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,38,0,0"/>
         <Label Content="AwarageTime:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="92,102,0,0"/>

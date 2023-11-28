@@ -145,14 +145,6 @@ namespace Kafedra.Study.Disciplines
             Update();
         }
 
-
-
-
-
-
-
-
-
         private void AddDisciplineButton_Click(object sender, RoutedEventArgs e)
         {
             var window = new DisciplineWindow();
@@ -207,7 +199,6 @@ namespace Kafedra.Study.Disciplines
             Update();
         }
 
-        /*-----------------------------------------------------------------*/
         private void LoadComboBoxData()
         {
             LoadSpecializations();
