@@ -9,10 +9,19 @@
       Title="AdminPage">
 
     <Grid Background="#FF313338">
-        <Label x:Name="_label" Content="Добро пожаловать!" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="#FFB5BAC1" FontSize="20" FontWeight="Bold"/>
-        <Frame Name="MyFrame" Content="Frame" Margin="155,52,10,10" Foreground="#FFB93434" Background="#FF1A1A1A"/>
-      
-        <StackPanel Margin="0,89,650,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label x:Name="_label" Content="Добро пожаловать!" HorizontalAlignment="Left" Margin="9,7,0,0" VerticalAlignment="Top" Foreground="#FFB5BAC1" FontSize="20" FontWeight="Bold" Grid.ColumnSpan="2"/>
+        <Frame Name="MyFrame" Grid.Column="1" Margin="10,52,10,10" Foreground="#FFB93434" Background="#FF1A1A1A"/>
+
+        <StackPanel Margin="0,89,0,0" HorizontalAlignment="Left">
             <Button Content="Учебные материалы" Width="132" Click="EDMat_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Height="46"/>
             <Button Content="Мероприятия" Width="132" Click="Events_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Height="46"/>
             <Button Content="Проекты" Width="132" Click="Projects_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Height="46"/>
@@ -20,9 +29,6 @@
             <Button Content="Дисциплины" Width="132" Click="Disciplines_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Height="46"/>
             <Button Content="Группы" Width="132" Click="Grop_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Height="46"/>
             <Button Content="Другое" Width="132" Click="Other_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Height="46"/>
-
         </StackPanel>
-
-
     </Grid>
 </Page>

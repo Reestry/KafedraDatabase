@@ -37,18 +37,26 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Guests">
-                <Grid>
-                    <Button Content="Добавить гостя" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="AddGuest_Click"/>
-                    <Button Content="Редактировать гостя" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Width="75" Click="EditGuestButton_Click"/>
-                    <Button Content="Удалить гостя" HorizontalAlignment="Left" Margin="170,10,0,0" VerticalAlignment="Top" Width="75" Click="DeleteGuestButton_Click"/>
-                    <Button Content="Добавить мероприятие" HorizontalAlignment="Left" Margin="250,10,0,0" VerticalAlignment="Top" Width="75" Click="AddEvent_Click1"/>
-                    <Button Content="Удалить мероприятие" HorizontalAlignment="Left" Margin="330,10,0,0" VerticalAlignment="Top" Width="75" Click="DeleteEventButton_Click1"/>
-                    <ComboBox Name="guestsComboBox" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="120"/>
-                    <ComboBox Name="eventsComboBox1" HorizontalAlignment="Left" Margin="135,45,0,0" VerticalAlignment="Top" Width="120"/>
-                    <Button Name="AssignEventButton1" Content="Назначить мероприятие" HorizontalAlignment="Left" Margin="260,45,0,0" VerticalAlignment="Top" Width="75" Click="AssignEventButton_Click1"/>
-                    <Button Name="RemoveAssignmentButton1" Content="Удалить назначение" HorizontalAlignment="Left" Margin="345,45,0,0" VerticalAlignment="Top" Width="75" Click="RemoveAssignmentButton_Click1"/>
-                    <DataGrid Name="dataGrid1" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Height="200" Width="480" SelectionChanged="dataGrid1_SelectionChanged"/>
-                    <Button Content="Редактировать мероприятие" HorizontalAlignment="Left" Margin="430,10,0,0" VerticalAlignment="Top" Width="174" Click="EventEdt_Click1"/>
+                <Grid Background="#FF1A1A1A" Margin="0,0,-4,0" Height="460">
+                    <Expander Header="Управление гостями" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="-3,19,0,0">
+                        <StackPanel>
+                            <Button Content="Добавить гостя" Click="AddGuest_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White"/>
+                            <Button Content="Редактировать гостя" Click="EditGuestButton_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White"/>
+                            <Button Content="Удалить гостя" Click="DeleteGuestButton_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White"/>
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="Управление мероприятиями" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="434,12,0,0">
+                        <StackPanel>
+                            <Button Content="Добавить мероприятие" Click="AddEvent_Click1" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White"/>
+                            <Button Content="Редактировать мероприятие" Click="EventEdt_Click1" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White"/>
+                            <Button Content="Удалить мероприятие" Click="DeleteEventButton_Click1" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White"/>
+                        </StackPanel>
+                    </Expander>
+                    <ComboBox Name="guestsComboBox" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Width="174"/>
+                    <ComboBox Name="eventsComboBox1" HorizontalAlignment="Left" Margin="434,119,0,0" VerticalAlignment="Top" Width="200"/>
+                    <Button Name="AssignEventButton1" Content="Назначить мероприятие" HorizontalAlignment="Left" Margin="210,56,0,0" VerticalAlignment="Top" Width="187" Click="AssignEventButton_Click1" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White"/>
+                    <Button Name="RemoveAssignmentButton1" Content="Удалить назначение" HorizontalAlignment="Left" Margin="210,119,0,0" VerticalAlignment="Top" Width="187" Click="RemoveAssignmentButton_Click1"/>
+                    <DataGrid Name="dataGrid1" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Height="188" Width="641"/>
                 </Grid>
             </TabItem>
         </TabControl>
