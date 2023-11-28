@@ -38,7 +38,7 @@ namespace Kafedra.Study.Other.AddingWindows
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            string connectionString = "Ваша строка подключения к базе данных";
+            string connectionString = SQLConnection.connectionString;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

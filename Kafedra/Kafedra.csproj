@@ -83,6 +83,12 @@
     <Compile Include="Study\Group\GroupPage.xaml.cs">
       <DependentUpon>GroupPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Study\Other\AddingWindows\AddAdminWindow.xaml.cs">
+      <DependentUpon>AddAdminWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Study\Other\AddingWindows\EditAdminWindow.xaml.cs">
+      <DependentUpon>EditAdminWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Study\Other\OtherPage.xaml.cs">
       <DependentUpon>OtherPage.xaml</DependentUpon>
     </Compile>
@@ -196,6 +202,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Study\Group\GroupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Study\Other\AddingWindows\AddAdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Study\Other\AddingWindows\EditAdminWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

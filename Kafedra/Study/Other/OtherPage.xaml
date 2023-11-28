@@ -17,8 +17,8 @@
                         <DataGrid.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="Добавить" Click="AddAdminButton_Click"/>
-                                <MenuItem Header="Редактировать" Click="EditGroupButton_Click"/>
-                                <MenuItem Header="Удалить" Click="DeleteGroupButton_Click"/>
+                                <MenuItem Header="Редактировать" Click="EditAdminButton_Click"/>
+                                <MenuItem Header="Удалить" Click="DeleteAdmin_Click"/>
 
                             </ContextMenu>
                         </DataGrid.ContextMenu>
