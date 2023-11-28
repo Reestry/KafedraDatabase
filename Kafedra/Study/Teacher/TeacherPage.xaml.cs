@@ -92,6 +92,40 @@ namespace Kafedra.Study.Teacher
             }
         }
 
+
+        private void EditTeacherButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_teachersGrid.SelectedItem != null)
+            {
+                DataRowView selectedRow = (DataRowView)_teachersGrid.SelectedItem;
+                EditTeacherWindow editTeacherWindow = new EditTeacherWindow(selectedRow);
+                if (editTeacherWindow.ShowDialog() == true)
+                {
+                    using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+                    {
+                        connection.Open();
+                        SqlCommand command = new SqlCommand("EditTeacher", connection);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@TeacherID", editTeacherWindow.TeacherID);
+                        command.Parameters.AddWithValue("@FirstName", editTeacherWindow.FirstName);
+                        command.Parameters.AddWithValue("@LastName", editTeacherWindow.LastName);
+                        command.Parameters.AddWithValue("@Patronymic", editTeacherWindow.Patronymic);
+                        command.Parameters.AddWithValue("@Login", editTeacherWindow.Login);
+                        command.Parameters.AddWithValue("@Password", editTeacherWindow.Password);
+                        command.Parameters.AddWithValue("@PostID", editTeacherWindow.PostID);
+                        command.ExecuteNonQuery();
+                    }
+
+                    Update();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите преподавателя для редактирования");
+            }
+        }
+        
+
         private void dataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
