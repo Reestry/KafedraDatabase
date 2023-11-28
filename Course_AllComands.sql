@@ -51,6 +51,29 @@ BEGIN
 END
 
 
+CREATE PROCEDURE EditTeacher
+    @TeacherID INT,
+    @FirstName NVARCHAR(50),
+    @LastName NVARCHAR(50),
+    @Patronymic NVARCHAR(50),
+    @Login NVARCHAR(50),
+    @Password NVARCHAR(50),
+    @PostID INT
+AS
+BEGIN
+    UPDATE Teacher
+    SET Login = @Login,
+        Password = @Password,
+        FKPostID = @PostID
+    WHERE TeacherID = @TeacherID;
+
+    UPDATE Person
+    SET FirstName = @FirstName,
+        LastName = @LastName,
+        Patronymic = @Patronymic
+    WHERE PersonID = (SELECT FKPersonID FROM Teacher WHERE TeacherID = @TeacherID);
+END
+
 
 drop procedure DeleteTeacher;
 
