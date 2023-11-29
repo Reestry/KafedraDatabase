@@ -16,43 +16,34 @@ namespace Kafedra.UserPages
             _label.Content = MainWindow.WriteName;
         }
 
-
         private void EDMat_Click(object sender, RoutedEventArgs e)
         {
-            //MyFrame.Content = new EducationMaterialsPage();
             MyFrame.Content = new UserEducationMaterialsPage();
         }
 
         private void Events_Click(object sender, RoutedEventArgs e)
         {
-            //MyFrame.Content = new EventsControllerPage();
             MyFrame.Content = new UserEventsControllerPage();
         }
 
         private void Projects_Click(object sender, RoutedEventArgs e)
         {
-            //MyFrame.Content = new Projects();
             MyFrame.Content = new UserProjectsPage();
         }
 
         private void Teachers_Click(object sender, RoutedEventArgs e)
         {
-            //MyFrame.Content = new TeacherPage();
             MyFrame.Content = new _UserTeachersPage();
         }
 
         private void Disciplines_Click(object sender, RoutedEventArgs e)
         {
-            //MyFrame.Content = new DisciplinesPage();
             MyFrame.Content = new UserDisciplinesPage();
         }
 
         private void Grop_Click(object sender, RoutedEventArgs e)
         {
-            //MyFrame.Content = new GroupPage();
             MyFrame.Content = new UserGroupPage();
         }
-
-
     }
 }

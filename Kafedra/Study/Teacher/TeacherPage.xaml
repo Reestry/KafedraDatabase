@@ -35,13 +35,6 @@
 
                     <ComboBox x:Name="TeachersComboBox" HorizontalAlignment="Left" Margin="15,23,0,0" VerticalAlignment="Top" Width="207" SelectionChanged="TeachersComboBox_SelectionChanged"/>
                     <DataGrid Name="_teachers_disciplinesGrid" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Height="215" Width="635" SelectionChanged="dataGrid1_SelectionChanged">
-                        <DataGrid.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="Добавить" Click="AddTeacherButton_Click"/>
-                                <MenuItem Header="Редактировать"/>
-                                <MenuItem Header="Удалить" Click="DeleteTeacherButton_Click"/>
-                            </ContextMenu>
-                        </DataGrid.ContextMenu>
                     </DataGrid>
 
                 </Grid>
