@@ -16,6 +16,8 @@ namespace Kafedra
         {
             InitializeComponent();
             _label.Content = name;
+
+            _label.Content = MainWindow.WriteName;
         }
 
         private void EDMat_Click(object sender, RoutedEventArgs e)

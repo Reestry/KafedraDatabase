@@ -29,6 +29,7 @@ namespace Kafedra
             PasswordBox.Password = "password1";
         }
 
+        public static string WriteName;
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
@@ -53,9 +54,13 @@ namespace Kafedra
                             MessageBox.Show($"Добро пожаловать, админ {reader["FirstName"]} {reader["LastName"]} {reader["Patronymic"]}!");
 
                             var name = $"Добро пожаловать, {reader["FirstName"]} {reader["LastName"]} {reader["Patronymic"]}!";
+                            WriteName = name ;  
+
                             Frame frame = new Frame();
                             frame.Navigate(new AdminPage(name));
                             Content = frame;
+                            // MainWindow main = (MainWindow)Application.Current.MainWindow;
+                            //   main.MainFrame.Navigate(new AdminPage(name));
                         }
                     }
                     else

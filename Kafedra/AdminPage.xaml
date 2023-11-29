@@ -10,18 +10,25 @@
 
     <Grid Background="#FF313338">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="14.8"/>
+            <ColumnDefinition Width="143.2"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label x:Name="_label" Content="Добро пожаловать!" HorizontalAlignment="Left" Margin="9,7,0,0" VerticalAlignment="Top" Foreground="#FFB5BAC1" FontSize="20" FontWeight="Bold" Grid.ColumnSpan="2"/>
-        <Frame Name="MyFrame" Grid.Column="1" Margin="10,52,10,10" Foreground="#FFB93434" Background="#FF1A1A1A"/>
+        <Image HorizontalAlignment="Left" Height="511" Margin="1,52,0,0" VerticalAlignment="Top" Width="1057" Grid.ColumnSpan="3" Grid.RowSpan="2" Source="/vector-purple-landscape-illustration.jpg" >
+            <Image.OpacityMask>
+                <ImageBrush ImageSource="/vector-purple-landscape-illustration.jpg" TileMode="Tile" Stretch="Fill"/>
+            </Image.OpacityMask>
+        </Image>
 
-        <StackPanel Margin="0,89,0,0" HorizontalAlignment="Left">
+        <Label x:Name="_label" Content="Добро пожаловать Павел Павлов Павлович!" HorizontalAlignment="Left" Margin="1,7,0,0" VerticalAlignment="Top" Foreground="#FFB5BAC1" FontSize="20" FontWeight="Bold" Grid.ColumnSpan="2" Height="37" Width="602" Grid.Column="1"/>
+        <Frame x:Name="MyFrame" Grid.Column="2" Margin="10,52,10,20" Foreground="#FFB93434" Background="#FF1A1A1A" Grid.RowSpan="2"/>
+
+        <StackPanel Margin="0,89,0,0" HorizontalAlignment="Left" Width="132" Grid.Column="1" Grid.ColumnSpan="2">
             <Button Content="Учебные материалы" Width="132" Click="EDMat_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Height="46"/>
             <Button Content="Мероприятия" Width="132" Click="Events_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Height="46"/>
             <Button Content="Проекты" Width="132" Click="Projects_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Height="46"/>

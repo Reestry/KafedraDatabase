@@ -10,9 +10,9 @@
 
     <Grid>
         <TabControl>
-            <TabItem Header="Админы">
+            <TabItem Header="Группы">
                 <Grid Background="#FF1A1A1A" Margin="0,0,-4,0" Height="460">
-                    <DataGrid Name="_groupDataGrade" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Height="282" Width="665" SelectionChanged="_groupDataGrade_SelectionChanged">
+                    <DataGrid Name="_groupDataGrade" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Height="203" Width="520" SelectionChanged="_groupDataGrade_SelectionChanged">
                         <DataGrid.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="Добавить" Click="AddGroupButton_Click"/>
@@ -23,7 +23,7 @@
                         </DataGrid.ContextMenu>
                     </DataGrid>
 
-                    <Button Content="Создать группу" Width="132" Click="AddGroupButton_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Margin="304,28,362,408"/>
+                    <Button Content="Создать группу" Width="164" Click="AddGroupButton_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Margin="272,28,0,408"  HorizontalAlignment="Left"/>
                     <ComboBox Name="GroupsComboBox" HorizontalAlignment="Left" Margin="28,28,0,0" VerticalAlignment="Top" Width="174" SelectionChanged="GroupsComboBox_SelectionChanged"/>
 
                 </Grid>
