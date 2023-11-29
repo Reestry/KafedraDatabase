@@ -714,12 +714,34 @@ EXEC GetMaterialsAfterYear @Year = 2020
 
 drop procedure GetGradesByGroupID
 
+--CREATE PROCEDURE GetGradesByGroupID
+--    @GroupID INT
+--AS
+--BEGIN
+--    SELECT 
+--        g.GradeID,
+--        g.FKDisciplineID,
+--        d.DisciplineName, 
+--        g.FKTypeWorkID,
+--        tw.TypeWorkName, 
+--        g.AverageRating
+--    FROM 
+--        Grade g
+--    JOIN 
+--        Discipline d ON g.FKDisciplineID = d.DisciplineID
+--    JOIN 
+--        TypeWork tw ON g.FKTypeWorkID = tw.TypeWorkID
+--    WHERE 
+--        g.FKSupervisedGroupID = @GroupID
+--END
+
 CREATE PROCEDURE GetGradesByGroupID
     @GroupID INT
 AS
 BEGIN
     SELECT 
         g.GradeID,
+        g.FKSupervisedGroupID,
         g.FKDisciplineID,
         d.DisciplineName, 
         g.FKTypeWorkID,
@@ -737,4 +759,19 @@ END
 
 
 
+
 EXEC GetGradesByGroupID @GroupID = 1
+
+
+CREATE PROCEDURE UpdateGradeByGroupID
+    @GroupID INT,
+    @GradeID INT,
+    @NewDisciplineID INT,
+    @NewTypeWorkID INT,
+    @NewRating FLOAT
+AS
+BEGIN
+    UPDATE Grade
+    SET FKDisciplineID = @NewDisciplineID, FKTypeWorkID = @NewTypeWorkID, AverageRating = @NewRating
+    WHERE FKSupervisedGroupID = @GroupID AND GradeID = @GradeID
+END

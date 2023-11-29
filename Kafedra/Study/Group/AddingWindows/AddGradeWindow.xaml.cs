@@ -5,9 +5,6 @@ using System.Windows.Controls;
 
 namespace Kafedra.Study.Group.AddingWindows
 {
-    /// <summary>
-    /// Логика взаимодействия для AddGradeWindow.xaml
-    /// </summary>
     public partial class AddGradeWindow : Window
     {
         public AddGradeWindow()

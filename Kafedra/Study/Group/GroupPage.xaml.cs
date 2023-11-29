@@ -43,27 +43,7 @@ namespace Kafedra.Study.Group
             }
         }
 
-        public void FillSupervisedGroupComboBox1()
-        {
-            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand("SELECT SupervisedGroupID, GroupName, StudentsCount FROM SupervisedGroup INNER JOIN Teacher ON SupervisedGroup.FKTeacherID = Teacher.TeacherID", connection);
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-                DataTable dataTable = new DataTable("SupervisedGroups");
-                dataAdapter.Fill(dataTable);
-                foreach (DataRow row in dataTable.Rows)
-                {
-                    string groupInfo = row["GroupName"].ToString() + " (" + row["StudentsCount"].ToString() + " студентов)";
-                    row["GroupName"] = groupInfo;
-                }
-                GroupsComboBox1.ItemsSource = dataTable.DefaultView;
-                GroupsComboBox1.DisplayMemberPath = "GroupName";
-                GroupsComboBox1.SelectedValuePath = "SupervisedGroupID";
 
-                _groupData_GetGrade.ItemsSource = dataTable.DefaultView;
-            }
-        }
 
         private void GroupsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -151,12 +131,52 @@ namespace Kafedra.Study.Group
 
                     _groupData_GetGrade.Columns[0].Visibility = Visibility.Collapsed;
                     _groupData_GetGrade.Columns[1].Visibility = Visibility.Collapsed;
-                    _groupData_GetGrade.Columns[3].Visibility = Visibility.Collapsed;
+                    _groupData_GetGrade.Columns[2].Visibility = Visibility.Collapsed;
+                    _groupData_GetGrade.Columns[4].Visibility = Visibility.Collapsed;
+
 
                 }
             }
+        }
 
+        public void FillSupervisedGroupComboBox1()
+        {
+            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT SupervisedGroupID, GroupName, StudentsCount FROM SupervisedGroup INNER JOIN Teacher ON SupervisedGroup.FKTeacherID = Teacher.TeacherID", connection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataTable dataTable = new DataTable("SupervisedGroups");
+                dataAdapter.Fill(dataTable);
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    string groupInfo = row["GroupName"].ToString() + " (" + row["StudentsCount"].ToString() + " студентов)";
+                    row["GroupName"] = groupInfo;
+                }
+                GroupsComboBox1.ItemsSource = dataTable.DefaultView;
+                GroupsComboBox1.DisplayMemberPath = "GroupName";
+                GroupsComboBox1.SelectedValuePath = "SupervisedGroupID";
 
+                _groupData_GetGrade.ItemsSource = dataTable.DefaultView;
+            }
+        }
+        private void EditGrade_Click(object sender, RoutedEventArgs e)
+        {
+            if (_groupData_GetGrade.SelectedItem != null)
+            {
+                DataRowView rowView = (DataRowView)_groupData_GetGrade.SelectedItem;
+                int gradeid = (int)rowView["GradeID"];
+
+                EditGradeWindow EditGradeWindow = new EditGradeWindow(gradeid);
+                EditGradeWindow.ShowDialog();
+                Update();
+
+                EditGradeWindow.Closed += UpdateOnClose;
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, выберите группу для редактирования.");
+            }
         }
     }
 }

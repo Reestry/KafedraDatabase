@@ -5,8 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kafedra.Study.Group.AddingWindows"
         mc:Ignorable="d"
-        Title="EditGradeWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="EditGradeWindow" Height="450" Width="300">
+    <Grid Margin="10,10,10,-6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Group:" Grid.Row="0"/>
+        <ComboBox Name="cbGroup" Grid.Row="1" Margin="0,0,0,10" SelectionChanged="cbGroup_SelectionChanged"/>
+
+        <Label Content="Discipline:" Grid.Row="2"/>
+        <ComboBox Name="cbDiscipline" Grid.Row="3" Margin="0,0,0,10" SelectionChanged="cbDiscipline_SelectionChanged"/>
+
+        <Label Content="TypeWork:" Grid.Row="4"/>
+        <ComboBox Name="cbTypeWork" Grid.Row="5" Margin="0,0,0,10" SelectionChanged="cbTypeWork_SelectionChanged"/>
+
+        <Label Content="Rating:" Grid.Row="6"/>
+        <TextBox Name="tbRating" Grid.Row="7" Margin="0,0,0,175"/>
+
+        <Button Content="Save" Grid.Row="7" Click="SaveButton_Click" Margin="43,60,0,115" HorizontalAlignment="Left" Width="176"/>
     </Grid>
 </Window>
+
