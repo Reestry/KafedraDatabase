@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\_________KafedraCourse\Kafedra\Kafedra\App.xaml
-28459154840
+30-1208508515
 
-33-1106454592
+35371091383
 13-38814620
-AddMaterialWindow.xaml;AdminPage.xaml;EditMaterialWindow.xaml;EducationMaterialsPage.xaml;EventsAddingWindows\AddEventWindow.xaml;EventsAddingWindows\AddGuestWindow.xaml;EventsAddingWindows\AddParticipantWindow.xaml;EventsAddingWindows\EditEventWindow.xaml;EventsAddingWindows\EditGuestWindow.xaml;EventsAddingWindows\EditParticipantWindow.xaml;EventsControllerPage.xaml;MainWindow.xaml;Projects.xaml;ProjectsWindows\ProjectAddWindow.xaml;ProjectsWindows\ProjectsEditWindow.xaml;Study\Disciplines\AddingWindows\DisciplineWindow.xaml;Study\Disciplines\AddingWindows\SpecializationWindow.xaml;Study\Disciplines\DisciplinesPage.xaml;Study\Group\AddingWindows\EditGroupWindow.xaml;Study\Group\AddingWindows\GroupWindow.xaml;Study\Group\GroupPage.xaml;Study\Other\AddingWindows\AddAdminWindow.xaml;Study\Other\AddingWindows\EditAdminWindow.xaml;Study\Other\OtherPage.xaml;Study\Teacher\TeacherPage.xaml;Study\Teacher\TeacherWindows\AddTeacherWindow.xaml;Study\Teacher\TeacherWindows\EditTeacherWindow.xaml;Study\Teacher\TeacherWindows\TeacherAssignWindow.xaml;
+AddMaterialWindow.xaml;AdminPage.xaml;EditMaterialWindow.xaml;EducationMaterialsPage.xaml;EventsAddingWindows\AddEventWindow.xaml;EventsAddingWindows\AddGuestWindow.xaml;EventsAddingWindows\AddParticipantWindow.xaml;EventsAddingWindows\EditEventWindow.xaml;EventsAddingWindows\EditGuestWindow.xaml;EventsAddingWindows\EditParticipantWindow.xaml;EventsControllerPage.xaml;MainWindow.xaml;Projects.xaml;ProjectsWindows\ProjectAddWindow.xaml;ProjectsWindows\ProjectsEditWindow.xaml;Study\Disciplines\AddingWindows\DisciplineWindow.xaml;Study\Disciplines\AddingWindows\SpecializationWindow.xaml;Study\Disciplines\DisciplinesPage.xaml;Study\Group\AddingWindows\AddGradeWindow.xaml;Study\Group\AddingWindows\EditGradeWindow.xaml;Study\Group\AddingWindows\EditGroupWindow.xaml;Study\Group\AddingWindows\GroupWindow.xaml;Study\Group\GroupPage.xaml;Study\Other\AddingWindows\AddAdminWindow.xaml;Study\Other\AddingWindows\EditAdminWindow.xaml;Study\Other\OtherPage.xaml;Study\Teacher\TeacherPage.xaml;Study\Teacher\TeacherWindows\AddTeacherWindow.xaml;Study\Teacher\TeacherWindows\EditTeacherWindow.xaml;Study\Teacher\TeacherWindows\TeacherAssignWindow.xaml;
 
 False
 

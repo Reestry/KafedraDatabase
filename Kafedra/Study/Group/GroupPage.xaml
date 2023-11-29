@@ -38,13 +38,16 @@
                     <DataGrid Name="_groupData_GetGrade" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Height="203" Width="520" SelectionChanged="_groupDataGrade_SelectionChanged">
                         <DataGrid.ContextMenu>
                             <ContextMenu>
-                                <MenuItem Header="Добавить"/>
+                                <MenuItem Header="Добавить" Click="AddGrade_Click"/>
                                 <MenuItem Header="Редактировать" />
                                 <MenuItem Header="Удалить"/>
 
                             </ContextMenu>
                         </DataGrid.ContextMenu>
                     </DataGrid>
+
+
+                    <Button Content="Процедура" HorizontalAlignment="Left" Margin="367,16,0,0" VerticalAlignment="Top" Width="129" Background="#FF5865F2" Foreground="#FFECECEC" FontWeight="Bold" FontSize="15" Height="33"/>
 
                 </Grid>
             </TabItem>

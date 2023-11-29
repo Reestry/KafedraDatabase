@@ -98,3 +98,7 @@ D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherWindows
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherWindows\EditTeacherWindow.baml
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\ProjectsWindows\ProjectsEditWindow.g.cs
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\ProjectsWindows\ProjectsEditWindow.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Group\AddingWindows\AddGradeWindow.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Group\AddingWindows\AddGradeWindow.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Group\AddingWindows\EditGradeWindow.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Group\AddingWindows\EditGradeWindow.baml

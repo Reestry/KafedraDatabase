@@ -83,6 +83,12 @@
     <Compile Include="Study\Disciplines\DisciplinesPage.xaml.cs">
       <DependentUpon>DisciplinesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Study\Group\AddingWindows\AddGradeWindow.xaml.cs">
+      <DependentUpon>AddGradeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Study\Group\AddingWindows\EditGradeWindow.xaml.cs">
+      <DependentUpon>EditGradeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Study\Group\AddingWindows\EditGroupWindow.xaml.cs">
       <DependentUpon>EditGroupWindow.xaml</DependentUpon>
     </Compile>
@@ -214,6 +220,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Study\Disciplines\DisciplinesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Study\Group\AddingWindows\AddGradeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Study\Group\AddingWindows\EditGradeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -21,32 +21,6 @@ Drop table Grade;
 
 
 
-/*---------Курсач */
-
-
-CREATE PROCEDURE GetTeacherInfo
-AS
-BEGIN
-    SELECT 
-        Person.PersonID,
-        Person.FirstName,
-        Person.LastName,
-        Person.Patronymic,
-        Teacher.TeacherID,
-        Teacher.Login,
-        Teacher.Password,
-        Post.PostID,
-        Post.PostName
-    FROM 
-        Teacher
-    INNER JOIN 
-        Person ON Teacher.FKPersonID = Person.PersonID
-    INNER JOIN 
-        Post ON Teacher.FKPostID = Post.PostID
-END
-
-EXEC GetTeacherInfo
-
 
 
 
@@ -109,68 +83,6 @@ FKParticipantsID INT Foreign Key (FKParticipantsID) References Participants(Part
 FKEventsID INT Foreign Key (FKEventsID) References Events(EventsID)
 );
 
-----Курсач функция!!!----
-
-
-CREATE FUNCTION GetParticipantEvents()
-RETURNS TABLE 
-AS
-RETURN 
-(
-    SELECT EP.Events_ParticipantsID, P.LastName, P.FirstName, P.Patronymic, E.EventName, E.EventDate
-    FROM Participants P
-    INNER JOIN Events_Participants EP ON P.ParticipantsID = EP.FKParticipantsID
-    INNER JOIN Events E ON EP.FKEventsID = E.EventsID
-)
-
-SELECT * FROM GetParticipantEvents()
-
-
-
-
-
---- Курсач процедура удаления
-
-CREATE PROCEDURE DeleteEventParticipant
-    @Events_ParticipantsID INT
-AS
-BEGIN
-    DELETE FROM Events_Participants
-    WHERE Events_ParticipantsID = @Events_ParticipantsID;
-END
-
-
-EXEC DeleteEventParticipant @Events_ParticipantsID = 1;
-
-
-
-
-
-------------- Курсч Триггеры!!
-
-CREATE TRIGGER trg_After_Delete_Events
-ON Events
-AFTER DELETE
-AS
-BEGIN
-    DELETE EP
-    FROM Events_Participants EP
-    JOIN deleted d ON EP.FKEventsID = d.EventsID
-END
-
-
-CREATE TRIGGER trg_After_Delete_Participants
-ON Participants
-AFTER DELETE
-AS
-BEGIN
-    DELETE EP
-    FROM Events_Participants EP
-    JOIN deleted d ON EP.FKParticipantsID = d.ParticipantsID
-END
-
-----активироваться после удаления записей из таблиц Events и Participants, и они удалют все связанные записи из таблицы Events_Participants
----------
 
 
 create table Guests(
@@ -185,6 +97,133 @@ Events_GuestsID INT  NOT NULL PRIMARY KEY IDENTITY,
 FKGuestsID INT Foreign Key (FKGuestsID) References Guests(GuestsID),
 FKEventsID INT Foreign Key (FKEventsID) References Events(EventsID)
 );
+
+
+
+
+ALTER TABLE TimeManage
+ADD FKGroupID INT FOREIGN KEY REFERENCES SupervisedGroup(SupervisedGroupID)
+
+
+
+
+
+
+
+create table Person(
+PersonID INT  NOT NULL PRIMARY KEY IDENTITY, 
+FirstName  NVARChar(50) NOT NULL,
+LastName   NVARChar(50) NOT NULL,
+Patronymic NVARChar(50)
+);
+
+
+
+create table Post(
+PostID   INT  NOT NULL PRIMARY KEY IDENTITY, 
+PostName  NVARChar(50) NOT NULL,
+);
+
+create table Teacher(
+FKPostID INT Foreign Key (FKPostID) References Post(PostID),
+FKPersonID  INT  NOT NULL REFERENCES Person (PersonID) on delete cascade,
+
+TeacherID INT  NOT NULL PRIMARY KEY IDENTITY, 
+Login  NVARChar(50) NOT NULL,
+Password   NVARChar(50) NOT NULL
+);
+
+
+/*-----------------------*/
+
+create table Specialization(
+SpecializationID INT  NOT NULL PRIMARY KEY IDENTITY,
+SpecializationName NVARChar(50) NOT NULL
+);
+
+create table Discipline(
+DisciplineID   INT  NOT NULL PRIMARY KEY IDENTITY,
+DisciplineName  NVARChar(max) NOT NULL,
+);
+
+create table TypeWork(
+TypeWorkID INT  NOT NULL PRIMARY KEY IDENTITY,
+TypeWorkName NVARChar(50) NOT NULL
+);
+
+create table Specialization_Discipline(
+FKSpecializationID INT Foreign Key (FKSpecializationID) References Specialization(SpecializationID),
+FKDisciplineID INT Foreign Key (FKDisciplineID) References Discipline(DisciplineID),
+
+Specialization_DisciplineID INT  NOT NULL PRIMARY KEY IDENTITY
+
+);
+
+CREATE TABLE TypeWork_Specialization_Discipline(
+    TypeWork_Specialization_DisciplineID INT NOT NULL PRIMARY KEY IDENTITY,
+    FKTypeWorkID INT FOREIGN KEY (FKTypeWorkID) REFERENCES TypeWork(TypeWorkID),
+    FKSpecialization_DisciplineID INT FOREIGN KEY (FKSpecialization_DisciplineID) REFERENCES Specialization_Discipline(Specialization_DisciplineID)
+);
+
+
+
+
+CREATE TABLE TimeManage(
+    FKTeacherID INT FOREIGN KEY (FKTeacherID) REFERENCES Teacher(TeacherID),
+    FKTypeWork_Specialization_DisciplineID INT FOREIGN KEY (FKTypeWork_Specialization_DisciplineID) REFERENCES TypeWork_Specialization_Discipline(TypeWork_Specialization_DisciplineID),
+    TimeManageID INT PRIMARY KEY IDENTITY NOT NULL,
+    AwarageTime INT,
+    FKGroupID INT FOREIGN KEY REFERENCES SupervisedGroup(SupervisedGroupID)
+);
+
+
+
+create table SupervisedGroup(
+FKTeacherID INT Foreign Key (FKTeacherID) References Teacher(TeacherID),
+FKSpecializationID INT Foreign Key (FKSpecializationID) References Specialization(SpecializationID),
+
+SupervisedGroupID   INT PRIMARY KEY Identity NOT NULL,
+GroupName   NVARChar(50) NOT NULL,
+StudentsCount int not null
+);
+
+
+
+
+
+
+
+
+
+
+
+
+create table Grade(
+FKSupervisedGroupID INT Foreign Key (FKSupervisedGroupID) References SupervisedGroup(SupervisedGroupID),
+FKDisciplineID INT Foreign Key (FKDisciplineID) References Discipline(DisciplineID),
+FKTypeWorkID   INT Foreign Key (FKTypeWorkID) References TypeWork(TypeWorkID),
+
+
+GradeID  INT PRIMARY KEY Identity NOT NULL,
+AverageRating float 
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 CREATE FUNCTION GetGuestsEvents()
@@ -238,15 +277,6 @@ EXEC GetEventsForParticipant @ParticipantID = 1;
 
 
 
-create table Grade(
-FKSupervisedGroupID INT Foreign Key (FKSupervisedGroupID) References SupervisedGroup(SupervisedGroupID),
-FKDisciplineID INT Foreign Key (FKDisciplineID) References Discipline(DisciplineID),
-FKTypeWorkID   INT Foreign Key (FKTypeWorkID) References TypeWork(TypeWorkID),
-
-
-GradeID  INT PRIMARY KEY Identity NOT NULL,
-AverageRating float 
-);
 
 
 INSERT INTO Person (FirstName, LastName, Patronymic)
@@ -572,92 +602,6 @@ VALUES (1, 2, 3, 11); -- Это вызовет ошибку из-за оценки 11
 
 
 
-ALTER TABLE TimeManage
-ADD FKGroupID INT FOREIGN KEY REFERENCES SupervisedGroup(SupervisedGroupID)
-
-
-
-
-
-
-
-create table Person(
-PersonID INT  NOT NULL PRIMARY KEY IDENTITY, 
-FirstName  NVARChar(50) NOT NULL,
-LastName   NVARChar(50) NOT NULL,
-Patronymic NVARChar(50)
-);
-
-
-
-create table Post(
-PostID   INT  NOT NULL PRIMARY KEY IDENTITY, 
-PostName  NVARChar(50) NOT NULL,
-);
-
-create table Teacher(
-FKPostID INT Foreign Key (FKPostID) References Post(PostID),
-FKPersonID  INT  NOT NULL REFERENCES Person (PersonID) on delete cascade,
-
-TeacherID INT  NOT NULL PRIMARY KEY IDENTITY, 
-Login  NVARChar(50) NOT NULL,
-Password   NVARChar(50) NOT NULL
-);
-
-
-/*-----------------------*/
-
-create table Specialization(
-SpecializationID INT  NOT NULL PRIMARY KEY IDENTITY,
-SpecializationName NVARChar(50) NOT NULL
-);
-
-create table Discipline(
-DisciplineID   INT  NOT NULL PRIMARY KEY IDENTITY,
-DisciplineName  NVARChar(max) NOT NULL,
--- AwarageTime INT NOT NULL  /*NVARChar(50)*/
-);
-
-create table TypeWork(
-TypeWorkID INT  NOT NULL PRIMARY KEY IDENTITY,
-TypeWorkName NVARChar(50) NOT NULL
-);
-
-create table Specialization_Discipline(
-FKSpecializationID INT Foreign Key (FKSpecializationID) References Specialization(SpecializationID),
-FKDisciplineID INT Foreign Key (FKDisciplineID) References Discipline(DisciplineID),
-
-Specialization_DisciplineID INT  NOT NULL PRIMARY KEY IDENTITY
-
-);
-
-CREATE TABLE TypeWork_Specialization_Discipline(
-    TypeWork_Specialization_DisciplineID INT NOT NULL PRIMARY KEY IDENTITY,
-    FKTypeWorkID INT FOREIGN KEY (FKTypeWorkID) REFERENCES TypeWork(TypeWorkID),
-    FKSpecialization_DisciplineID INT FOREIGN KEY (FKSpecialization_DisciplineID) REFERENCES Specialization_Discipline(Specialization_DisciplineID)
-);
-
-
-
-
-CREATE TABLE TimeManage(
-    FKTeacherID INT FOREIGN KEY (FKTeacherID) REFERENCES Teacher(TeacherID),
-    FKTypeWork_Specialization_DisciplineID INT FOREIGN KEY (FKTypeWork_Specialization_DisciplineID) REFERENCES TypeWork_Specialization_Discipline(TypeWork_Specialization_DisciplineID),
-    TimeManageID INT PRIMARY KEY IDENTITY NOT NULL,
-    AwarageTime INT,
-    FKGroupID INT FOREIGN KEY REFERENCES SupervisedGroup(SupervisedGroupID)
-);
-
-
-
-create table SupervisedGroup(
-FKTeacherID INT Foreign Key (FKTeacherID) References Teacher(TeacherID),
-FKSpecializationID INT Foreign Key (FKSpecializationID) References Specialization(SpecializationID),
-
-SupervisedGroupID   INT PRIMARY KEY Identity NOT NULL,
-GroupName   NVARChar(50) NOT NULL,
-StudentsCount int not null
-);
 
 ---- Удалить столбец AwarageTime из таблицы Discipline
 --ALTER TABLE Discipline

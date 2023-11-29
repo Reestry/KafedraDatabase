@@ -712,7 +712,7 @@ END
 EXEC GetMaterialsAfterYear @Year = 2020
 
 
-
+drop procedure GetGradesByGroupID
 
 CREATE PROCEDURE GetGradesByGroupID
     @GroupID INT
@@ -720,7 +720,9 @@ AS
 BEGIN
     SELECT 
         g.GradeID,
+        g.FKDisciplineID,
         d.DisciplineName, 
+        g.FKTypeWorkID,
         tw.TypeWorkName, 
         g.AverageRating
     FROM 
@@ -732,6 +734,7 @@ BEGIN
     WHERE 
         g.FKSupervisedGroupID = @GroupID
 END
+
 
 
 EXEC GetGradesByGroupID @GroupID = 1

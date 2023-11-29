@@ -26,4 +26,6 @@ FD:\_________KafedraCourse\Kafedra\Kafedra\EventsAddingWindows\EditParticipantWi
 FD:\_________KafedraCourse\Kafedra\Kafedra\EventsAddingWindows\EditGuestWindow.xaml;;
 FD:\_________KafedraCourse\Kafedra\Kafedra\Study\Teacher\TeacherWindows\EditTeacherWindow.xaml;;
 FD:\_________KafedraCourse\Kafedra\Kafedra\ProjectsWindows\ProjectsEditWindow.xaml;;
+FD:\_________KafedraCourse\Kafedra\Kafedra\Study\Group\AddingWindows\AddGradeWindow.xaml;;
+FD:\_________KafedraCourse\Kafedra\Kafedra\Study\Group\AddingWindows\EditGradeWindow.xaml;;
 

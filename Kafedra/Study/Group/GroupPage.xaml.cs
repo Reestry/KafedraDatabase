@@ -124,12 +124,17 @@ namespace Kafedra.Study.Group
         {
 
         }
+        private void AddGrade_Click(object sender, RoutedEventArgs e)
+        {
+            AddGradeWindow GroupWindow = new AddGradeWindow();
+            GroupWindow.ShowDialog();
+            Update();
+
+            GroupWindow.Closed += UpdateOnClose;
+        }
 
         private void GroupsComboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //_groupData_GetGrade
-
-            //    GroupsComboBox1
             if (GroupsComboBox1.SelectedValue != null)
             {
                 int groupId = (int)GroupsComboBox1.SelectedValue;
@@ -144,7 +149,9 @@ namespace Kafedra.Study.Group
                     dataAdapter.Fill(dataTable);
                     _groupData_GetGrade.ItemsSource = dataTable.DefaultView;
 
-                    _groupData_GetGrade.Columns[0].Visibility = Visibility.Collapsed; 
+                    _groupData_GetGrade.Columns[0].Visibility = Visibility.Collapsed;
+                    _groupData_GetGrade.Columns[1].Visibility = Visibility.Collapsed;
+                    _groupData_GetGrade.Columns[3].Visibility = Visibility.Collapsed;
 
                 }
             }
