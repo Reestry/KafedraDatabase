@@ -178,5 +178,31 @@ namespace Kafedra.Study.Group
                 MessageBox.Show("Пожалуйста, выберите группу для редактирования.");
             }
         }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_groupData_GetGrade.SelectedItem != null)
+            {
+                DataRowView rowView = (DataRowView)_groupData_GetGrade.SelectedItem;
+                int gradeID = (int)rowView["GradeID"];
+
+                using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("DeleteGradeByID", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@GradeID", gradeID);
+                    command.ExecuteNonQuery();
+                }
+
+                MessageBox.Show("Оценка удалена!");
+                Update();
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, выберите оценку для удаления.");
+            }
+        }
+
     }
 }

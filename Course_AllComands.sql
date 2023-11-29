@@ -775,3 +775,12 @@ BEGIN
     SET FKDisciplineID = @NewDisciplineID, FKTypeWorkID = @NewTypeWorkID, AverageRating = @NewRating
     WHERE FKSupervisedGroupID = @GroupID AND GradeID = @GradeID
 END
+
+
+CREATE PROCEDURE DeleteGradeByID
+    @GradeID INT
+AS
+BEGIN
+    DELETE FROM Grade
+    WHERE GradeID = @GradeID
+END

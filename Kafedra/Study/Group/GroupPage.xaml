@@ -40,7 +40,7 @@
                             <ContextMenu>
                                 <MenuItem Header="Добавить" Click="AddGrade_Click"/>
                                 <MenuItem Header="Редактировать" Click="EditGrade_Click" />
-                                <MenuItem Header="Удалить"/>
+                                <MenuItem Header="Удалить" Click="DeleteButton_Click"/>
 
                             </ContextMenu>
                         </DataGrid.ContextMenu>
