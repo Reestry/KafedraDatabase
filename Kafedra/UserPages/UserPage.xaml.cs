@@ -44,18 +44,15 @@ namespace Kafedra.UserPages
         private void Disciplines_Click(object sender, RoutedEventArgs e)
         {
             //MyFrame.Content = new DisciplinesPage();
+            MyFrame.Content = new UserDisciplinesPage();
         }
 
         private void Grop_Click(object sender, RoutedEventArgs e)
         {
             //MyFrame.Content = new GroupPage();
+            MyFrame.Content = new UserGroupPage();
         }
 
-        private void Other_Click(object sender, RoutedEventArgs e)
-        {
-            //MyFrame.Content = new OtherPage();
-
-        }
 
     }
 }

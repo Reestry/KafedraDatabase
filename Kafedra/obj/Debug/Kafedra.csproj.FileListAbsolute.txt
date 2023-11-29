@@ -112,3 +112,7 @@ D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\UserPages\UserProjectsPage.g
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\UserPages\_UserTeachersPage.g.cs
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\UserPages\UserProjectsPage.baml
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\UserPages\_UserTeachersPage.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\UserPages\UserDisciplinesPage.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\UserPages\UserGroupPage.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\UserPages\UserDisciplinesPage.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\UserPages\UserGroupPage.baml

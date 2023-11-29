@@ -35,7 +35,6 @@
             <Button Content="Преподаватели" Width="132" Click="Teachers_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Height="46"/>
             <Button Content="Дисциплины" Width="132" Click="Disciplines_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Height="46"/>
             <Button Content="Группы" Width="132" Click="Grop_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Height="46"/>
-            <Button Content="Другое" Width="132" Click="Other_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Height="46"/>
         </StackPanel>
     </Grid>
 </Page>
