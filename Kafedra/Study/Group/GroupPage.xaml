@@ -28,6 +28,26 @@
 
                 </Grid>
             </TabItem>
+
+            <TabItem Header="Успеваемость">
+                <Grid Background="#FF1A1A1A" Margin="0,0,-4,0" Height="460">
+
+
+                    <ComboBox Name="GroupsComboBox1" HorizontalAlignment="Left" Margin="28,28,0,0" VerticalAlignment="Top" Width="174" SelectionChanged="GroupsComboBox1_SelectionChanged"/>
+
+                    <DataGrid Name="_groupData_GetGrade" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Height="203" Width="520" SelectionChanged="_groupDataGrade_SelectionChanged">
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Добавить"/>
+                                <MenuItem Header="Редактировать" />
+                                <MenuItem Header="Удалить"/>
+
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                    </DataGrid>
+
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Page>

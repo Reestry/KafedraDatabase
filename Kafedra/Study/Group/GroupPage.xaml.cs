@@ -1,26 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Kafedra.Study.Group.AddingWindows;
 
 namespace Kafedra.Study.Group
 {
-    /// <summary>
-    /// Логика взаимодействия для GroupPage.xaml
-    /// </summary>
     public partial class GroupPage : Page
     {
         public GroupPage()
@@ -32,6 +18,7 @@ namespace Kafedra.Study.Group
         private void Update()
         {
             FillSupervisedGroupComboBox();
+            FillSupervisedGroupComboBox1();
         }
 
         public void FillSupervisedGroupComboBox()
@@ -56,6 +43,28 @@ namespace Kafedra.Study.Group
             }
         }
 
+        public void FillSupervisedGroupComboBox1()
+        {
+            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT SupervisedGroupID, GroupName, StudentsCount FROM SupervisedGroup INNER JOIN Teacher ON SupervisedGroup.FKTeacherID = Teacher.TeacherID", connection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                DataTable dataTable = new DataTable("SupervisedGroups");
+                dataAdapter.Fill(dataTable);
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    string groupInfo = row["GroupName"].ToString() + " (" + row["StudentsCount"].ToString() + " студентов)";
+                    row["GroupName"] = groupInfo;
+                }
+                GroupsComboBox1.ItemsSource = dataTable.DefaultView;
+                GroupsComboBox1.DisplayMemberPath = "GroupName";
+                GroupsComboBox1.SelectedValuePath = "SupervisedGroupID";
+
+                _groupData_GetGrade.ItemsSource = dataTable.DefaultView;
+            }
+        }
+
         private void GroupsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (GroupsComboBox.SelectedValue != null)
@@ -71,6 +80,7 @@ namespace Kafedra.Study.Group
                     DataTable dataTable = new DataTable("GroupInfo");
                     dataAdapter.Fill(dataTable);
                     _groupDataGrade.ItemsSource = dataTable.DefaultView;
+                    _groupDataGrade.Columns[0].Visibility = Visibility.Collapsed; // Скрываем первый столбец
                 }
             }
         }
@@ -79,7 +89,6 @@ namespace Kafedra.Study.Group
         {
             Update();
         }
-
 
         private void AddGroupButton_Click(object sender, RoutedEventArgs e)
         {
@@ -113,6 +122,33 @@ namespace Kafedra.Study.Group
         }
         private void _groupDataGrade_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+        }
+
+        private void GroupsComboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //_groupData_GetGrade
+
+            //    GroupsComboBox1
+            if (GroupsComboBox1.SelectedValue != null)
+            {
+                int groupId = (int)GroupsComboBox1.SelectedValue;
+                using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("GetGradesByGroupID", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@GroupID", groupId);
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                    DataTable dataTable = new DataTable("GroupInfo");
+                    dataAdapter.Fill(dataTable);
+                    _groupData_GetGrade.ItemsSource = dataTable.DefaultView;
+
+                    _groupData_GetGrade.Columns[0].Visibility = Visibility.Collapsed; 
+
+                }
+            }
+
 
         }
     }

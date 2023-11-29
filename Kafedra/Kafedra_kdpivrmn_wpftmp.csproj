@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C56799D4-B7BE-4BCB-A1A3-9DE467B756C9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Kafedra</RootNamespace>
+    <AssemblyName>Kafedra</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EventsAddingWindows\AddGuestWindow.xaml.cs">
+      <DependentUpon>AddGuestWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EventsAddingWindows\EditGuestWindow.xaml.cs">
+      <DependentUpon>EditGuestWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EventsAddingWindows\EditParticipantWindow.xaml.cs">
+      <DependentUpon>EditParticipantWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Projects.xaml.cs">
+      <DependentUpon>Projects.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectsWindows\ProjectAddWindow.xaml.cs">
+      <DependentUpon>ProjectAddWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectsWindows\ProjectsEditWindow.xaml.cs">
+      <DependentUpon>ProjectsEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SQLConnection.cs" />
+    <Compile Include="Study\Disciplines\AddingWindows\DisciplineWindow.xaml.cs">
+      <DependentUpon>DisciplineWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Study\Disciplines\AddingWindows\SpecializationWindow.xaml.cs">
+      <DependentUpon>SpecializationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Study\Disciplines\DisciplinesPage.xaml.cs">
+      <DependentUpon>DisciplinesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Study\Group\AddingWindows\EditGroupWindow.xaml.cs">
+      <DependentUpon>EditGroupWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Study\Group\AddingWindows\GroupWindow.xaml.cs">
+      <DependentUpon>GroupWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Study\Group\GroupPage.xaml.cs">
+      <DependentUpon>GroupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Study\Other\AddingWindows\AddAdminWindow.xaml.cs">
+      <DependentUpon>AddAdminWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Study\Other\AddingWindows\EditAdminWindow.xaml.cs">
+      <DependentUpon>EditAdminWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Study\Other\OtherPage.xaml.cs">
+      <DependentUpon>OtherPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Study\Teacher\TeacherPage.xaml.cs">
+      <DependentUpon>TeacherPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Study\Teacher\TeacherWindows\AddTeacherWindow.xaml.cs">
+      <DependentUpon>AddTeacherWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Study\Teacher\TeacherWindows\EditTeacherWindow.xaml.cs">
+      <DependentUpon>EditTeacherWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Study\Teacher\TeacherWindows\TeacherAssignWindow.xaml.cs">
+      <DependentUpon>TeacherAssignWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddMaterialWindow.xaml.cs">
+      <DependentUpon>AddMaterialWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPage.xaml.cs">
+      <DependentUpon>AdminPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EditMaterialWindow.xaml.cs">
+      <DependentUpon>EditMaterialWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EducationMaterialsPage.xaml.cs">
+      <DependentUpon>EducationMaterialsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EventsAddingWindows\AddEventWindow.xaml.cs">
+      <DependentUpon>AddEventWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EventsAddingWindows\AddParticipantWindow.xaml.cs">
+      <DependentUpon>AddParticipantWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EventsAddingWindows\EditEventWindow.xaml.cs">
+      <DependentUpon>EditEventWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EventsControllerPage.xaml.cs">
+      <DependentUpon>EventsControllerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Microsoft.CSharp.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\mscorlib.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\PresentationCore.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\PresentationFramework.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Data.DataSetExtensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Data.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Net.Http.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Xaml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Xml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Xml.Linq.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\WindowsBase.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\AddMaterialWindow.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\AdminPage.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\EditMaterialWindow.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\EducationMaterialsPage.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\EventsAddingWindows\AddEventWindow.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\EventsAddingWindows\AddGuestWindow.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\EventsAddingWindows\AddParticipantWindow.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\EventsAddingWindows\EditEventWindow.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\EventsAddingWindows\EditGuestWindow.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\EventsAddingWindows\EditParticipantWindow.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\EventsControllerPage.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\MainWindow.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Projects.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\ProjectsWindows\ProjectAddWindow.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\ProjectsWindows\ProjectsEditWindow.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Disciplines\AddingWindows\DisciplineWindow.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Disciplines\AddingWindows\SpecializationWindow.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Disciplines\DisciplinesPage.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Group\AddingWindows\EditGroupWindow.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Group\AddingWindows\GroupWindow.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Group\GroupPage.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Other\AddingWindows\AddAdminWindow.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Other\AddingWindows\EditAdminWindow.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Other\OtherPage.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherPage.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherWindows\AddTeacherWindow.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherWindows\EditTeacherWindow.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherWindows\TeacherAssignWindow.g.cs" />
+    <Compile Include="D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\App.g.cs" />
+  </ItemGroup>
+</Project>

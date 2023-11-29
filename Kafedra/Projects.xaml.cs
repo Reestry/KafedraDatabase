@@ -9,9 +9,6 @@ using System.Collections.Generic;
 
 namespace Kafedra
 {
-    /// <summary>
-    /// Логика взаимодействия для Projects.xaml
-    /// </summary>
     public partial class Projects : Page
     {
         private SqlDataAdapter _dataAdapter;

@@ -592,3 +592,146 @@ EXEC DeleteAdmin @AdminID = 12;
 -- Вывод информации об админах
 EXEC GetAdmins;
 
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+----Курсач функция!!!----
+
+
+CREATE FUNCTION GetParticipantEvents()
+RETURNS TABLE 
+AS
+RETURN 
+(
+    SELECT EP.Events_ParticipantsID, P.LastName, P.FirstName, P.Patronymic, E.EventName, E.EventDate
+    FROM Participants P
+    INNER JOIN Events_Participants EP ON P.ParticipantsID = EP.FKParticipantsID
+    INNER JOIN Events E ON EP.FKEventsID = E.EventsID
+)
+
+SELECT * FROM GetParticipantEvents()
+
+
+
+
+
+--- Курсач процедура удаления
+
+CREATE PROCEDURE DeleteEventParticipant
+    @Events_ParticipantsID INT
+AS
+BEGIN
+    DELETE FROM Events_Participants
+    WHERE Events_ParticipantsID = @Events_ParticipantsID;
+END
+
+
+EXEC DeleteEventParticipant @Events_ParticipantsID = 1;
+
+
+
+
+
+------------- Курсч Триггеры!!
+
+CREATE TRIGGER trg_After_Delete_Events
+ON Events
+AFTER DELETE
+AS
+BEGIN
+    DELETE EP
+    FROM Events_Participants EP
+    JOIN deleted d ON EP.FKEventsID = d.EventsID
+END
+
+
+CREATE TRIGGER trg_After_Delete_Participants
+ON Participants
+AFTER DELETE
+AS
+BEGIN
+    DELETE EP
+    FROM Events_Participants EP
+    JOIN deleted d ON EP.FKParticipantsID = d.ParticipantsID
+END
+
+----активироваться после удаления записей из таблиц Events и Participants, и они удалют все связанные записи из таблицы Events_Participants
+---------
+
+/*---------Курсач */
+
+
+CREATE PROCEDURE GetTeacherInfo
+AS
+BEGIN
+    SELECT 
+        Person.PersonID,
+        Person.FirstName,
+        Person.LastName,
+        Person.Patronymic,
+        Teacher.TeacherID,
+        Teacher.Login,
+        Teacher.Password,
+        Post.PostID,
+        Post.PostName
+    FROM 
+        Teacher
+    INNER JOIN 
+        Person ON Teacher.FKPersonID = Person.PersonID
+    INNER JOIN 
+        Post ON Teacher.FKPostID = Post.PostID
+END
+
+EXEC GetTeacherInfo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------- Какое-то обязательное Г для курсача
+-- принимает год в качестве параметра и возвращает все обучающие материалы, выпущенные после этого года.
+CREATE PROCEDURE GetMaterialsAfterYear @Year INT
+AS
+BEGIN
+    SELECT * FROM EducationalMaterials
+    WHERE YEAR(PublicationYear) > @Year
+END
+
+EXEC GetMaterialsAfterYear @Year = 2020
+
+
+
+
+CREATE PROCEDURE GetGradesByGroupID
+    @GroupID INT
+AS
+BEGIN
+    SELECT 
+        g.GradeID,
+        d.DisciplineName, 
+        tw.TypeWorkName, 
+        g.AverageRating
+    FROM 
+        Grade g
+    JOIN 
+        Discipline d ON g.FKDisciplineID = d.DisciplineID
+    JOIN 
+        TypeWork tw ON g.FKTypeWorkID = tw.TypeWorkID
+    WHERE 
+        g.FKSupervisedGroupID = @GroupID
+END
+
+
+EXEC GetGradesByGroupID @GroupID = 1
