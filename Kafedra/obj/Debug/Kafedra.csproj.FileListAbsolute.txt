@@ -102,3 +102,13 @@ D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Group\AddingWindows\Ad
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Group\AddingWindows\AddGradeWindow.baml
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Group\AddingWindows\EditGradeWindow.g.cs
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Group\AddingWindows\EditGradeWindow.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\UserPages\UserPage.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\UserPages\UserPage.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\UserPages\UserEducationMaterialsPage.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\UserPages\UserEventsControllerPage.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\UserPages\UserEducationMaterialsPage.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\UserPages\UserEventsControllerPage.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\UserPages\UserProjectsPage.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\UserPages\_UserTeachersPage.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\UserPages\UserProjectsPage.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\UserPages\_UserTeachersPage.baml

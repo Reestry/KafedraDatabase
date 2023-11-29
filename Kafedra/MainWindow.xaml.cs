@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kafedra.UserPages;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -77,6 +78,13 @@ namespace Kafedra
                             if (reader.Read())
                             {
                                 MessageBox.Show($"Добро пожаловать, учитель {reader["FirstName"]} {reader["LastName"]} {reader["Patronymic"]}!");
+
+                                var name = $"Добро пожаловать, {reader["FirstName"]} {reader["LastName"]} {reader["Patronymic"]}!";
+                                WriteName = name;
+
+                                Frame frame = new Frame();
+                                frame.Navigate(new UserPage(name));
+                                Content = frame;
                             }
                         }
                         else

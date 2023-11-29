@@ -155,11 +155,7 @@ namespace Kafedra
             addEventWindow.ShowDialog();
             LoadEvents();
         }
-        /// <summary>
-        /// ///////////////////////////////////////////////////////////////////////////////
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         private void EventEdt_Click(object sender, RoutedEventArgs e)
         {
 
@@ -197,12 +193,10 @@ namespace Kafedra
             {
                 connection.Open();
 
-                // Сначала удалите связанные записи из таблицы Events_Participants
                 SqlCommand command1 = new SqlCommand("DELETE FROM Events_Participants WHERE FKEventsID = @eventId", connection);
                 command1.Parameters.AddWithValue("@eventId", eventId);
                 command1.ExecuteNonQuery();
 
-                // Затем удалите само мероприятие
                 SqlCommand command2 = new SqlCommand("DELETE FROM Events WHERE EventsID = @eventId", connection);
                 command2.Parameters.AddWithValue("@eventId", eventId);
                 command2.ExecuteNonQuery();
@@ -231,13 +225,7 @@ namespace Kafedra
             UpdateInfo();
         }
 
-
-
-
-
         #endregion
-
-
 
         #region Guests
         private void DataGrid_LayoutUpdatedGuests(object sender, EventArgs e)
@@ -323,12 +311,10 @@ namespace Kafedra
             {
                 connection.Open();
 
-                // Сначала удалите связанные записи из таблицы Events_Participants
                 SqlCommand command1 = new SqlCommand("DELETE FROM Events_Participants WHERE FKEventsID = @eventId", connection);
                 command1.Parameters.AddWithValue("@eventId", eventId);
                 command1.ExecuteNonQuery();
 
-                // Затем удалите само мероприятие
                 SqlCommand command2 = new SqlCommand("DELETE FROM Events WHERE EventsID = @eventId", connection);
                 command2.Parameters.AddWithValue("@eventId", eventId);
                 command2.ExecuteNonQuery();

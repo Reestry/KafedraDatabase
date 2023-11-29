@@ -40,7 +40,6 @@ namespace Kafedra
         
     private void DataGrid_LayoutUpdated(object sender, EventArgs e)
     {
-        // Скройте столбец Events_ParticipantsID
         if (dataGrid.Columns.Count > 0)
         {
             dataGrid.Columns[0].Visibility = Visibility.Hidden;
@@ -86,7 +85,6 @@ namespace Kafedra
 
                 EditMaterialWindow editMaterialWindow = new EditMaterialWindow(MaterialID);
 
-                // Передаем данные в окно редактирования
                 editMaterialWindow.txtMaterialType.Text = rowview["MaterialType"].ToString();
                 editMaterialWindow.txtMaterialName.Text = rowview["MaterialName"].ToString();
                 editMaterialWindow.txtMaterialAutor.Text = rowview["MaterialAutor"].ToString();
@@ -139,7 +137,6 @@ namespace Kafedra
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Получаем выбранную строку
             DataRowView rowview = dataGrid.SelectedItem as DataRowView;
 
             if (rowview != null)

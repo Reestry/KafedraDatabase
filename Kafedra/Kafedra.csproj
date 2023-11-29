@@ -119,6 +119,21 @@
     <Compile Include="Study\Teacher\TeacherWindows\TeacherAssignWindow.xaml.cs">
       <DependentUpon>TeacherAssignWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserPages\UserEducationMaterialsPage.xaml.cs">
+      <DependentUpon>UserEducationMaterialsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserPages\UserEventsControllerPage.xaml.cs">
+      <DependentUpon>UserEventsControllerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserPages\UserPage.xaml.cs">
+      <DependentUpon>UserPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserPages\UserProjectsPage.xaml.cs">
+      <DependentUpon>UserProjectsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserPages\_UserTeachersPage.xaml.cs">
+      <DependentUpon>_UserTeachersPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="AddMaterialWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -268,6 +283,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Study\Teacher\TeacherWindows\TeacherAssignWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserPages\UserEducationMaterialsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserPages\UserEventsControllerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserPages\UserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserPages\UserProjectsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserPages\_UserTeachersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

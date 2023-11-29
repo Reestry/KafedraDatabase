@@ -9,8 +9,8 @@
             <RowDefinition Height="128*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="107*"/>
-            <ColumnDefinition Width="683*"/>
+            <ColumnDefinition Width="169*"/>
+            <ColumnDefinition Width="721*"/>
         </Grid.ColumnDefinitions>
         <Image HorizontalAlignment="Left" Height="541" VerticalAlignment="Top" Width="1051" Grid.ColumnSpan="2" Source="/7bd9f7fe3f1c72f54b8c442.png" Grid.RowSpan="3" Margin="-10,0,0,0">
             <Image.OpacityMask>

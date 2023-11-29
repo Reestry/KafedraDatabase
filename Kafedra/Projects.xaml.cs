@@ -25,7 +25,6 @@ namespace Kafedra
 
         private void DataGrid_LayoutUpdated(object sender, EventArgs e)
         {
-            // Скройте столбец Events_ParticipantsID
             if (ProjectsDataGrid.Columns.Count > 0)
             {
                 ProjectsDataGrid.Columns[0].Visibility = Visibility.Hidden;
