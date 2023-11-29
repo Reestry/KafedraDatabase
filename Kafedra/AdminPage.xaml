@@ -19,7 +19,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Image HorizontalAlignment="Left" Height="511" Margin="1,52,0,0" VerticalAlignment="Top" Width="1057" Grid.ColumnSpan="3" Grid.RowSpan="2" Source="/vector-purple-landscape-illustration.jpg" >
+        <Image HorizontalAlignment="Left" Height="606" Margin="1,52,0,0" VerticalAlignment="Top" Width="1275" Grid.ColumnSpan="3" Grid.RowSpan="2" Source="/vector-purple-landscape-illustration.jpg" >
             <Image.OpacityMask>
                 <ImageBrush ImageSource="/vector-purple-landscape-illustration.jpg" TileMode="Tile" Stretch="Fill"/>
             </Image.OpacityMask>
