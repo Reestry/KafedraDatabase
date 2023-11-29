@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Kafedra.Study.Group.AddingWindows;
 using Kafedra.Study.Other.AddingWindows;
+using Kafedra.OtherProcedures;
 
 namespace Kafedra.Study.Other
 {
@@ -94,6 +95,12 @@ namespace Kafedra.Study.Other
         private void _groupDataGrade_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void GetMaterialsAfterYear_Click(object sender, RoutedEventArgs e)
+        {
+            GetMaterialsAfterYear GetMaterialsAfterYear = new GetMaterialsAfterYear();
+            GetMaterialsAfterYear.ShowDialog();
         }
     }
 }

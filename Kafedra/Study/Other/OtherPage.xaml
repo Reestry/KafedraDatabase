@@ -11,7 +11,7 @@
     <Grid>
 
         <TabControl>
-            <TabItem Header="Добавить группу">
+            <TabItem Header="Добавить админа">
                 <Grid Background="#FF1A1A1A" Margin="0,0,-4,0" Height="460">
                     <DataGrid Name="AdminDataGrid" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Height="282" Width="665" SelectionChanged="_groupDataGrade_SelectionChanged">
                         <DataGrid.ContextMenu>
@@ -23,6 +23,15 @@
                             </ContextMenu>
                         </DataGrid.ContextMenu>
                     </DataGrid>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Процедуры">
+                <Grid Background="#FF1A1A1A" Margin="0,0,-4,0" Height="460">
+                    <Button Content="Материалы после определенного года" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Height="51" Width="244" Click="GetMaterialsAfterYear_Click"/>
+
+
 
                 </Grid>
             </TabItem>

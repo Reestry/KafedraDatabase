@@ -695,46 +695,6 @@ EXEC GetTeacherInfo
 
 
 
-
-
-
-
-
----------------- Какое-то обязательное Г для курсача
--- принимает год в качестве параметра и возвращает все обучающие материалы, выпущенные после этого года.
-CREATE PROCEDURE GetMaterialsAfterYear @Year INT
-AS
-BEGIN
-    SELECT * FROM EducationalMaterials
-    WHERE YEAR(PublicationYear) > @Year
-END
-
-EXEC GetMaterialsAfterYear @Year = 2020
-
-
-drop procedure GetGradesByGroupID
-
---CREATE PROCEDURE GetGradesByGroupID
---    @GroupID INT
---AS
---BEGIN
---    SELECT 
---        g.GradeID,
---        g.FKDisciplineID,
---        d.DisciplineName, 
---        g.FKTypeWorkID,
---        tw.TypeWorkName, 
---        g.AverageRating
---    FROM 
---        Grade g
---    JOIN 
---        Discipline d ON g.FKDisciplineID = d.DisciplineID
---    JOIN 
---        TypeWork tw ON g.FKTypeWorkID = tw.TypeWorkID
---    WHERE 
---        g.FKSupervisedGroupID = @GroupID
---END
-
 CREATE PROCEDURE GetGradesByGroupID
     @GroupID INT
 AS
@@ -784,3 +744,20 @@ BEGIN
     DELETE FROM Grade
     WHERE GradeID = @GradeID
 END
+
+
+
+
+---------------- Какое-то обязательное Г для курсача
+-- принимает год в качестве параметра и возвращает все обучающие материалы, выпущенные после этого года.
+CREATE PROCEDURE GetMaterialsAfterYear @Year INT
+AS
+BEGIN
+    SELECT * FROM EducationalMaterials
+    WHERE YEAR(PublicationYear) > @Year
+END
+
+EXEC GetMaterialsAfterYear @Year = 2020
+
+
+drop procedure GetGradesByGroupID
