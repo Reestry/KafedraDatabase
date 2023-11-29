@@ -62,7 +62,6 @@ namespace Kafedra
 
             ProjectAddWindow.Closed += Update;
 
-            //  _dataAdapter.Update(_dataTable);
         }
 
         private void FinishDevelopment_Click(object sender, RoutedEventArgs e)
@@ -71,11 +70,8 @@ namespace Kafedra
             {
                 DataRowView row = (DataRowView)ProjectsDataGrid.SelectedItem;
                 int projectId = (int)row["ProjectsID"];
-
-                // Обновите статус на "Закончен" в базе данных
                 UpdateProjectStatus(projectId, "Завершен");
 
-                // Обновите отображаемые данные в DataGrid
                 LoadData();
             }
         }
@@ -94,7 +90,19 @@ namespace Kafedra
                 _dataAdapter.Update(_dataTable);
             }
         }
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ProjectsDataGrid.SelectedItem != null)
+            {
+                DataRowView row = (DataRowView)ProjectsDataGrid.SelectedItem;
+                int projectId = (int)row["ProjectsID"];
 
+                ProjectsEditWindow projectEditWindow = new ProjectsEditWindow(projectId);
+                projectEditWindow.ShowDialog();
+
+                projectEditWindow.Closed += Update;
+            }
+        }
 
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)

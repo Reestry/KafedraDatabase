@@ -96,3 +96,5 @@ D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\EventsAddingWindows\EditGues
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\EventsAddingWindows\EditGuestWindow.baml
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherWindows\EditTeacherWindow.g.cs
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Teacher\TeacherWindows\EditTeacherWindow.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\ProjectsWindows\ProjectsEditWindow.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\ProjectsWindows\ProjectsEditWindow.baml

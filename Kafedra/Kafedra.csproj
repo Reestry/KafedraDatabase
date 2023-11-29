@@ -70,6 +70,9 @@
     <Compile Include="ProjectsWindows\ProjectAddWindow.xaml.cs">
       <DependentUpon>ProjectAddWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProjectsWindows\ProjectsEditWindow.xaml.cs">
+      <DependentUpon>ProjectsEditWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SQLConnection.cs" />
     <Compile Include="Study\Disciplines\AddingWindows\DisciplineWindow.xaml.cs">
       <DependentUpon>DisciplineWindow.xaml</DependentUpon>
@@ -195,6 +198,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProjectsWindows\ProjectAddWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProjectsWindows\ProjectsEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
