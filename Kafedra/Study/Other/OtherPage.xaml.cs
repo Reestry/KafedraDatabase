@@ -129,5 +129,13 @@ namespace Kafedra.Study.Other
                 }
             }
         }
+
+        private void btnProjects_click(object sender, RoutedEventArgs e)
+        {
+
+            InDevelopProjectsWindow InDevelopProjectsWindow = new InDevelopProjectsWindow();
+            InDevelopProjectsWindow.ShowDialog();
+
+        }
     }
 }

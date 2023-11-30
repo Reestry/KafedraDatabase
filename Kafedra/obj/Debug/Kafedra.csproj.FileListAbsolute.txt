@@ -120,3 +120,5 @@ D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\OtherProcedures\GetMaterials
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\OtherProcedures\GetMaterialsAfterYear.baml
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\OtherProcedures\GetGuestPerDate.g.cs
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\OtherProcedures\GetGuestPerDate.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Other\AddingWindows\InDevelopProjectsWindow.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\Study\Other\AddingWindows\InDevelopProjectsWindow.baml
