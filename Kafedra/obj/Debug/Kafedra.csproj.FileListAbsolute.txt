@@ -118,3 +118,5 @@ D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\UserPages\UserDisciplinesPag
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\UserPages\UserGroupPage.baml
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\OtherProcedures\GetMaterialsAfterYear.g.cs
 D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\OtherProcedures\GetMaterialsAfterYear.baml
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\OtherProcedures\GetGuestPerDate.g.cs
+D:\_________KafedraCourse\Kafedra\Kafedra\obj\Debug\OtherProcedures\GetGuestPerDate.baml

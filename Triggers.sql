@@ -101,8 +101,6 @@ FKEventsID INT Foreign Key (FKEventsID) References Events(EventsID)
 
 
 
-ALTER TABLE TimeManage
-ADD FKGroupID INT FOREIGN KEY REFERENCES SupervisedGroup(SupervisedGroupID)
 
 
 
@@ -175,6 +173,11 @@ CREATE TABLE TimeManage(
     AwarageTime INT,
     FKGroupID INT FOREIGN KEY REFERENCES SupervisedGroup(SupervisedGroupID)
 );
+
+
+
+ALTER TABLE TimeManage
+ADD FKGroupID INT FOREIGN KEY REFERENCES SupervisedGroup(SupervisedGroupID)
 
 
 
