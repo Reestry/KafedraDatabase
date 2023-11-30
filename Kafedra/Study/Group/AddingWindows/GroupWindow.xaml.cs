@@ -64,29 +64,44 @@ namespace Kafedra.Study.Group.AddingWindows
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-
             if (string.IsNullOrEmpty(TeacherComboBox.Text) || string.IsNullOrEmpty(SpecializationComboBox.Text) || string.IsNullOrEmpty(GroupNameTextBox.Text) || string.IsNullOrEmpty(StudentsCountTextBox.Text))
             {
                 MessageBox.Show("Пожалуйста, заполните все поля.");
                 return;
             }
 
-            string connectionString = SQLConnection.connectionString;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            if (!int.TryParse(StudentsCountTextBox.Text, out int studentsCount))
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand("CreateNewGroup", connection);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-
-                command.Parameters.AddWithValue("@TeacherID", TeacherComboBox.SelectedValue);
-                command.Parameters.AddWithValue("@SpecializationID", SpecializationComboBox.SelectedValue);
-                command.Parameters.AddWithValue("@GroupName", GroupNameTextBox.Text);
-                command.Parameters.AddWithValue("@StudentsCount", int.Parse(StudentsCountTextBox.Text));
-
-                command.ExecuteNonQuery();
+                MessageBox.Show("Введите корректное число в поле Количество студентов.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
 
-            this.Close();
+            string connectionString = SQLConnection.connectionString;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("CreateNewGroup", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@TeacherID", TeacherComboBox.SelectedValue);
+                    command.Parameters.AddWithValue("@SpecializationID", SpecializationComboBox.SelectedValue);
+                    command.Parameters.AddWithValue("@GroupName", GroupNameTextBox.Text);
+                    command.Parameters.AddWithValue("@StudentsCount", studentsCount);
+
+                    command.ExecuteNonQuery();
+                }
+
+                this.Close();
+                MessageBox.Show("Группа успешно создана!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка при создании группы: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
     }
 }

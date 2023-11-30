@@ -95,6 +95,7 @@ namespace Kafedra
 
                 ProjectsEditWindow projectEditWindow = new ProjectsEditWindow(projectId);
                 projectEditWindow.ShowDialog();
+                LoadData();
 
                 projectEditWindow.Closed += Update;
             }

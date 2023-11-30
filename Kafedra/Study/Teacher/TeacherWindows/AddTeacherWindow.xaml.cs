@@ -44,22 +44,42 @@ namespace Kafedra.Study.Teacher.TeacherWindows
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+            if (string.IsNullOrWhiteSpace(FirstNameTextBox.Text) || string.IsNullOrWhiteSpace(LastNameTextBox.Text) || string.IsNullOrWhiteSpace(LoginTextBox.Text) || string.IsNullOrWhiteSpace(PasswordTextBox.Text) || PostComboBox.SelectedValue == null)
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand("AddNewTeacher", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@FirstName", FirstNameTextBox.Text);
-                command.Parameters.AddWithValue("@LastName", LastNameTextBox.Text);
-                command.Parameters.AddWithValue("@Patronymic", PatronymicTextBox.Text);
-                command.Parameters.AddWithValue("@Login", LoginTextBox.Text);
-                command.Parameters.AddWithValue("@Password", PasswordTextBox.Text);
-                command.Parameters.AddWithValue("@PostID", PostComboBox.SelectedValue);
-                command.ExecuteNonQuery();
+                MessageBox.Show("Пожалуйста, заполните все поля.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
 
-            this.Close();
+            string connectionString = SQLConnection.connectionString;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    SqlCommand command = new SqlCommand("AddNewTeacher", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@FirstName", FirstNameTextBox.Text);
+                    command.Parameters.AddWithValue("@LastName", LastNameTextBox.Text);
+                    command.Parameters.AddWithValue("@Patronymic", PatronymicTextBox.Text);
+                    command.Parameters.AddWithValue("@Login", LoginTextBox.Text);
+                    command.Parameters.AddWithValue("@Password", PasswordTextBox.Text);
+                    command.Parameters.AddWithValue("@PostID", PostComboBox.SelectedValue);
+
+                    command.ExecuteNonQuery();
+                }
+
+                this.Close();
+                MessageBox.Show("Новый учитель добавлен успешно!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка при добавлении нового учителя: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
 
     }
 }

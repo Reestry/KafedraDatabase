@@ -28,6 +28,12 @@ namespace Kafedra.Study.Disciplines.AddingWindows
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(SpecializationNameTextBox.Text))
+            {
+                MessageBox.Show("Введите название специализации.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             SpecializationName = SpecializationNameTextBox.Text;
             this.DialogResult = true;
         }

@@ -28,24 +28,34 @@ namespace Kafedra.ProjectsWindows
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             string eventType = EventTypeTextBox.Text;
-            string status = (StatusComboBox.SelectedItem as ComboBoxItem).Content.ToString();
+            string status = (StatusComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
 
-            // Выполните ваш запрос к базе данных с использованием eventType и status
-
-            // Пример обновленного триггера
-            // Обратите внимание, что вам, возможно, придется внести изменения в ваш запрос в зависимости от структуры вашей базы данных
-            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+            if (string.IsNullOrEmpty(eventType) || string.IsNullOrEmpty(status))
             {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand("INSERT INTO Projects (TypeOfProject, Status) VALUES (@TypeOfProject, @Status)", connection))
-                {
-                    command.Parameters.AddWithValue("@TypeOfProject", eventType);
-                    command.Parameters.AddWithValue("@Status", status);
-                    command.ExecuteNonQuery();
-                }
+                MessageBox.Show("Заполните все поля перед сохранением.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return; 
             }
-            
-            this.Close();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("INSERT INTO Projects (TypeOfProject, Status) VALUES (@TypeOfProject, @Status)", connection))
+                    {
+                        command.Parameters.AddWithValue("@TypeOfProject", eventType);
+                        command.Parameters.AddWithValue("@Status", status);
+                        command.ExecuteNonQuery();
+                    }
+                }
+
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Произошла ошибка при сохранении проекта. Подробности: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
     }
 }

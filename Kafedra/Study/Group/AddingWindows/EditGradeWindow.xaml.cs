@@ -105,28 +105,46 @@ namespace Kafedra.Study.Group.AddingWindows
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            if (cbGroup.SelectedValue == null || cbDiscipline.SelectedValue == null || cbTypeWork.SelectedValue == null || string.IsNullOrWhiteSpace(tbRating.Text))
+            {
+                MessageBox.Show("Заполните все поля", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (!float.TryParse(tbRating.Text, out float rating))
+            {
+                MessageBox.Show("Введите корректное число в поле Рейтинг", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             int groupID = (int)cbGroup.SelectedValue;
             int disciplineID = (int)cbDiscipline.SelectedValue;
             int typeWorkID = (int)cbTypeWork.SelectedValue;
-            float rating = float.Parse(tbRating.Text);
 
-            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+            try
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand("UpdateGradeByGroupID", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@GroupID", groupID);
-                command.Parameters.AddWithValue("@GradeID", _gradeID);
-                command.Parameters.AddWithValue("@NewDisciplineID", disciplineID);
-                command.Parameters.AddWithValue("@NewTypeWorkID", typeWorkID);
-                command.Parameters.AddWithValue("@NewRating", rating);
-                command.ExecuteNonQuery();
+                using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("UpdateGradeByGroupID", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@GroupID", groupID);
+                    command.Parameters.AddWithValue("@GradeID", _gradeID);
+                    command.Parameters.AddWithValue("@NewDisciplineID", disciplineID);
+                    command.Parameters.AddWithValue("@NewTypeWorkID", typeWorkID);
+                    command.Parameters.AddWithValue("@NewRating", rating);
+                    command.ExecuteNonQuery();
+                }
+
+                this.Close();
+                MessageBox.Show("Оценка обновлена!");
             }
-
-            this.Close();
-
-            MessageBox.Show("Оценка обновлена!");
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка при обновлении оценки: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
 
         private void cbGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

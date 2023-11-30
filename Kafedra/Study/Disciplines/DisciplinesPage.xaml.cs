@@ -114,19 +114,31 @@ namespace Kafedra.Study.Disciplines
         private void EditSpecButton_Click(object sender, RoutedEventArgs e)
         {
             var selectedSpecialization = (DataRowView)SpecializationDataGrid.SelectedItem;
+
+            if (selectedSpecialization == null)
+            {
+                MessageBox.Show("Выберите специализацию для редактирования", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return; 
+            }
+
             var window = new SpecializationWindow(selectedSpecialization["SpecializationName"].ToString());
+
             if (window.ShowDialog() == true)
             {
                 command = new SqlCommand("EXEC UpdateSpecialization @SpecializationID, @SpecializationName", connection);
                 command.Parameters.AddWithValue("@SpecializationID", selectedSpecialization["SpecializationID"]);
                 command.Parameters.AddWithValue("@SpecializationName", window.SpecializationName);
+
                 adapter.UpdateCommand = command;
+
                 connection.Open();
                 adapter.UpdateCommand.ExecuteNonQuery();
                 connection.Close();
+
                 Update();
             }
         }
+
 
         private void DeleteSpecButton_Click(object sender, RoutedEventArgs e)
         {
@@ -235,6 +247,12 @@ namespace Kafedra.Study.Disciplines
 
         private void AssignButton_Click(object sender, RoutedEventArgs e)
         {
+            if (SpecializationComboBox.SelectedValue == null || DisciplineComboBox.SelectedValue == null || TypeWorkComboBox.SelectedValue == null)
+            {
+                MessageBox.Show("Выберите значения для всех полей", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             var selectedSpecializationID = (int)SpecializationComboBox.SelectedValue;
             var selectedDisciplineID = (int)DisciplineComboBox.SelectedValue;
             var selectedTypeWorkID = (int)TypeWorkComboBox.SelectedValue;
@@ -243,11 +261,13 @@ namespace Kafedra.Study.Disciplines
             sqlCommand.Parameters.AddWithValue("@FKSpecializationID", selectedSpecializationID);
             sqlCommand.Parameters.AddWithValue("@FKDisciplineID", selectedDisciplineID);
             sqlCommand.Parameters.AddWithValue("@FKTypeWorkID", selectedTypeWorkID);
+
             sqlConnection.Open();
             sqlCommand.ExecuteNonQuery();
             sqlConnection.Close();
 
             Update();
+
             sqlCommand = new SqlCommand("EXEC GetDisciplinesAndTypeWorksForSpecialization @FKSpecializationID", sqlConnection);
             sqlCommand.Parameters.AddWithValue("@FKSpecializationID", currentSelection);
             sqlDataAdapter.SelectCommand = sqlCommand;
@@ -255,6 +275,7 @@ namespace Kafedra.Study.Disciplines
             sqlDataAdapter.Fill(sqlDataSet);
             Spec_disc_TypeGrid.ItemsSource = sqlDataSet.Tables[0].DefaultView;
         }
+
 
 
         private void SpecializationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

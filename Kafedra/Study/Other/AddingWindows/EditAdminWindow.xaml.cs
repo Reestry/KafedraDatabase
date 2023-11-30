@@ -38,26 +38,41 @@ namespace Kafedra.Study.Other.AddingWindows
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            string connectionString = SQLConnection.connectionString;
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            if (string.IsNullOrWhiteSpace(firstNameTextBox.Text) || string.IsNullOrWhiteSpace(lastNameTextBox.Text) || string.IsNullOrWhiteSpace(loginTextBox.Text) || string.IsNullOrWhiteSpace(passwordTextBox.Text))
             {
-                connection.Open();
-
-                SqlCommand command = new SqlCommand("EditAdmin", connection);
-                command.CommandType = CommandType.StoredProcedure;
-
-                command.Parameters.AddWithValue("@AdminID", adminRow["AdminID"]);
-                command.Parameters.AddWithValue("@FirstName", firstNameTextBox.Text);
-                command.Parameters.AddWithValue("@LastName", lastNameTextBox.Text);
-                command.Parameters.AddWithValue("@Patronymic", patronymicTextBox.Text);
-                command.Parameters.AddWithValue("@Login", loginTextBox.Text);
-                command.Parameters.AddWithValue("@Password", passwordTextBox.Text);
-
-                command.ExecuteNonQuery();
+                MessageBox.Show("Пожалуйста, заполните все поля.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
 
-            this.Close();
+            string connectionString = SQLConnection.connectionString;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    SqlCommand command = new SqlCommand("EditAdmin", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@AdminID", adminRow["AdminID"]);
+                    command.Parameters.AddWithValue("@FirstName", firstNameTextBox.Text);
+                    command.Parameters.AddWithValue("@LastName", lastNameTextBox.Text);
+                    command.Parameters.AddWithValue("@Patronymic", patronymicTextBox.Text);
+                    command.Parameters.AddWithValue("@Login", loginTextBox.Text);
+                    command.Parameters.AddWithValue("@Password", passwordTextBox.Text);
+
+                    command.ExecuteNonQuery();
+                }
+
+                this.Close();
+                MessageBox.Show("Информация об администраторе обновлена успешно!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка при редактировании администратора: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
     }
 }

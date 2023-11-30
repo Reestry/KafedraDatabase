@@ -60,7 +60,7 @@ namespace Kafedra.Study.Group
                     DataTable dataTable = new DataTable("GroupInfo");
                     dataAdapter.Fill(dataTable);
                     _groupDataGrade.ItemsSource = dataTable.DefaultView;
-                    _groupDataGrade.Columns[0].Visibility = Visibility.Collapsed; // Скрываем первый столбец
+                    _groupDataGrade.Columns[0].Visibility = Visibility.Collapsed; 
                 }
             }
         }

@@ -29,6 +29,12 @@ namespace Kafedra.Study.Disciplines.AddingWindows
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(DisciplineNameTextBox.Text))
+            {
+                MessageBox.Show("Введите название дисциплины.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             DisciplineName = DisciplineNameTextBox.Text;
             this.DialogResult = true;
         }

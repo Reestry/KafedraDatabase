@@ -50,21 +50,41 @@ namespace Kafedra.ProjectsWindows
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             string eventType = EventTypeTextBox.Text;
-            string status = (StatusComboBox.SelectedItem as ComboBoxItem).Content.ToString();
+            string status = (StatusComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString();
 
-            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+            if (string.IsNullOrEmpty(eventType) || string.IsNullOrEmpty(status))
             {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand("UPDATE Projects SET TypeOfProject = @TypeOfProject, Status = @Status WHERE ProjectsID = @ProjectsID", connection))
-                {
-                    command.Parameters.AddWithValue("@TypeOfProject", eventType);
-                    command.Parameters.AddWithValue("@Status", status);
-                    command.Parameters.AddWithValue("@ProjectsID", projectID);
-                    command.ExecuteNonQuery();
-                }
+                MessageBox.Show("Заполните все поля перед сохранением.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return; 
             }
 
-            this.Close();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("UPDATE Projects SET TypeOfProject = @TypeOfProject, Status = @Status WHERE ProjectsID = @ProjectsID", connection))
+                    {
+                        command.Parameters.AddWithValue("@TypeOfProject", eventType);
+                        command.Parameters.AddWithValue("@Status", status);
+                        command.Parameters.AddWithValue("@ProjectsID", projectID);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Проект успешно обновлен.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                            this.Close();
+                        }
+                        else
+                            MessageBox.Show("Произошла ошибка при обновлении проекта.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Произошла ошибка при обновлении проекта. Подробности: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
     }
 }

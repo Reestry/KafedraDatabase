@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows;
 using System.Windows.Controls;
+using System;
 
 namespace Kafedra.Study.Group.AddingWindows
 {
@@ -71,28 +72,45 @@ namespace Kafedra.Study.Group.AddingWindows
 
         private void AddGrade_Click(object sender, RoutedEventArgs e)
         {
+            if (cbGroup.SelectedValue == null || cbDiscipline.SelectedValue == null || cbTypeWork.SelectedValue == null || string.IsNullOrWhiteSpace(tbRating.Text))
+            {
+                MessageBox.Show("Заполните все поля", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (!float.TryParse(tbRating.Text, out float rating))
+            {
+                MessageBox.Show("Введите корректное число в поле Рейтинг", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             int groupID = (int)cbGroup.SelectedValue;
             int disciplineID = (int)cbDiscipline.SelectedValue;
             int typeWorkID = (int)cbTypeWork.SelectedValue;
-            float rating = float.Parse(tbRating.Text);
 
-            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+            try
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand("AddGrade", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@SupervisedGroupID", groupID);
-                command.Parameters.AddWithValue("@DisciplineID", disciplineID);
-                command.Parameters.AddWithValue("@TypeWorkID", typeWorkID);
-                command.Parameters.AddWithValue("@AverageRating", rating);
-                command.ExecuteNonQuery();
+                using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("AddGrade", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@SupervisedGroupID", groupID);
+                    command.Parameters.AddWithValue("@DisciplineID", disciplineID);
+                    command.Parameters.AddWithValue("@TypeWorkID", typeWorkID);
+                    command.Parameters.AddWithValue("@AverageRating", rating);
+                    command.ExecuteNonQuery();
+                }
+
+                this.Close();
+                MessageBox.Show("Оценка добавлена!");
             }
-
-            this.Close();
-
-            MessageBox.Show("Оценка добавлена!");
-
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка при добавлении оценки: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
 
         private void cbGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
