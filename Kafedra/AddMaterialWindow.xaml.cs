@@ -19,7 +19,7 @@ namespace Kafedra
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
-                    command.Parameters.AddWithValue("@FKAdminID", 1); // TODO: Replace with actual admin ID.
+                    command.Parameters.AddWithValue("@FKAdminID", 1);
                     command.Parameters.AddWithValue("@MaterialType", txtMaterialType.Text);
                     command.Parameters.AddWithValue("@MaterialName", txtMaterialName.Text);
                     command.Parameters.AddWithValue("@MaterialAutor", txtMaterialAutor.Text);

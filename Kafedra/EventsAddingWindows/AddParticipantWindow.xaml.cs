@@ -32,6 +32,12 @@ namespace Kafedra.EventsAddingWindows
             string lastName = LastNameTextBox.Text;
             string patronomyc = PatronomycTextBox.Text;
 
+            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(patronomyc))
+            {
+                MessageBox.Show("Заполните все поля перед сохранением.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return; 
+            }
+
             using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
             {
                 connection.Open();
@@ -44,5 +50,6 @@ namespace Kafedra.EventsAddingWindows
 
             this.Close();
         }
+
     }
 }

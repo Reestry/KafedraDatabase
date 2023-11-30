@@ -37,7 +37,13 @@ namespace Kafedra.EventsAddingWindows
         {
             string eventType = EventTypeTextBox.Text;
             string eventName = EventNameTextBox.Text;
-            DateTime eventDate = EventDatePicker.SelectedDate.Value;
+            DateTime? eventDate = EventDatePicker.SelectedDate;
+
+            if (string.IsNullOrEmpty(eventType) || string.IsNullOrEmpty(eventName) || !eventDate.HasValue)
+            {
+                MessageBox.Show("Заполните все поля перед сохранением.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return; 
+            }
 
             try
             {
@@ -47,7 +53,7 @@ namespace Kafedra.EventsAddingWindows
                     SqlCommand command = new SqlCommand("UPDATE Events SET EventType = @eventType, EventName = @eventName, EventDate = @eventDate WHERE EventsID = @eventId", connection);
                     command.Parameters.AddWithValue("@eventType", eventType);
                     command.Parameters.AddWithValue("@eventName", eventName);
-                    command.Parameters.AddWithValue("@eventDate", eventDate);
+                    command.Parameters.AddWithValue("@eventDate", eventDate.Value);
                     command.Parameters.AddWithValue("@eventId", eventId);
 
                     command.ExecuteNonQuery();
@@ -57,9 +63,9 @@ namespace Kafedra.EventsAddingWindows
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
-
+                MessageBox.Show("Произошла ошибка при обновлении данных. Подробности: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
     }
 }

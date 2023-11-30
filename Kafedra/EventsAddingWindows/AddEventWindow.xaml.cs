@@ -28,7 +28,13 @@ namespace Kafedra.EventsAddingWindows
         {
             string eventType = EventTypeTextBox.Text;
             string eventName = EventNameTextBox.Text;
-            DateTime eventDate = EventDatePicker.SelectedDate.Value;
+            DateTime? eventDate = EventDatePicker.SelectedDate;
+
+            if (string.IsNullOrEmpty(eventType) || string.IsNullOrEmpty(eventName) || !eventDate.HasValue)
+            {
+                MessageBox.Show("Заполните все поля перед сохранением.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return; 
+            }
 
             using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
             {
@@ -36,7 +42,7 @@ namespace Kafedra.EventsAddingWindows
                 SqlCommand command = new SqlCommand("INSERT INTO Events (EventType, EventName, EventDate) VALUES (@eventType, @eventName, @eventDate)", connection);
                 command.Parameters.AddWithValue("@eventType", eventType);
                 command.Parameters.AddWithValue("@eventName", eventName);
-                command.Parameters.AddWithValue("@eventDate", eventDate);
+                command.Parameters.AddWithValue("@eventDate", eventDate.Value);
                 command.ExecuteNonQuery();
             }
 

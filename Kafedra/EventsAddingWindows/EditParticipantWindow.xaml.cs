@@ -52,6 +52,12 @@ namespace Kafedra.EventsAddingWindows
             string lastName = LastNameTextBox.Text;
             string patronymic = PatronymicTextBox.Text;
 
+            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(patronymic))
+            {
+                MessageBox.Show("Заполните все поля перед сохранением.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return; 
+            }
+
             try
             {
                 using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
@@ -70,8 +76,9 @@ namespace Kafedra.EventsAddingWindows
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Произошла ошибка при обновлении данных. Подробности: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
     }
 }
