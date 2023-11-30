@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
@@ -19,25 +20,46 @@ namespace Kafedra.Study.Teacher.TeacherWindows
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+            if (_teacherId <= 0 || TypeWork_Specialization_Discipline.SelectedValue == null || string.IsNullOrWhiteSpace(AverageTime.Text) || GroupName.SelectedValue == null)
             {
-                connection.Open();
-
-                using (SqlCommand command = new SqlCommand("AssignTeacherToDiscipline", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.Add(new SqlParameter("@TeacherID", _teacherId));
-                    command.Parameters.Add(new SqlParameter("@TypeWork_Specialization_DisciplineID", (int)TypeWork_Specialization_Discipline.SelectedValue));
-                    command.Parameters.Add(new SqlParameter("@AwarageTime", int.Parse(AverageTime.Text)));
-                    command.Parameters.Add(new SqlParameter("@GroupID", (int)GroupName.SelectedValue));
-
-                    command.ExecuteNonQuery();
-                }
+                MessageBox.Show("Пожалуйста, заполните все поля корректно.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
 
-            this.Close();
+            if (!int.TryParse(AverageTime.Text, out int averageTime))
+            {
+                MessageBox.Show("Введите корректное значение для среднего времени.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("AssignTeacherToDiscipline", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.Add(new SqlParameter("@TeacherID", _teacherId));
+                        command.Parameters.Add(new SqlParameter("@TypeWork_Specialization_DisciplineID", (int)TypeWork_Specialization_Discipline.SelectedValue));
+                        command.Parameters.Add(new SqlParameter("@AwarageTime", averageTime));
+                        command.Parameters.Add(new SqlParameter("@GroupID", (int)GroupName.SelectedValue));
+
+                        command.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Преподаватель успешно назначен на дисциплину!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка при назначении преподавателя на дисциплину: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
 
         private void UpdateInfo()
         {

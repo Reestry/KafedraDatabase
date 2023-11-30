@@ -254,11 +254,9 @@ namespace Kafedra.Study.Teacher
 
         private void AssignSupGroup_Click(object sender, RoutedEventArgs e)
         {
-            // Получаем выбранного преподавателя и выбранную группу
             var selectedTeacherID = SupTeachersComboBox.SelectedValue;
             var selectedGroupID = GroupID;
 
-            // Проверяем, выбрал ли пользователь элементы
             if (selectedTeacherID == null || selectedGroupID == null)
             {
                 MessageBox.Show("Пожалуйста, выберите преподавателя и группу.");
@@ -285,7 +283,6 @@ namespace Kafedra.Study.Teacher
 
         private void TeachersComboBox_SelectionChanged1(object sender, SelectionChangedEventArgs e)
         {
-            // Получаем выбранного преподавателя
             var selectedTeacherID = (int)SupTeachersComboBox.SelectedValue;
 
             using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
@@ -302,7 +299,6 @@ namespace Kafedra.Study.Teacher
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
 
-                        // Скрываем столбец SupervisedGroupID
                         _teachers_Group_ass.AutoGeneratingColumn += (s, args) =>
                         {
                             if (args.PropertyName == "SupervisedGroupID")
@@ -347,7 +343,6 @@ namespace Kafedra.Study.Teacher
 
         private void DeleteAssignSupGroup_Click(object sender, RoutedEventArgs e)
         {
-            // Получаем выбранную группу из DataGrid
             var selectedGroup = _teachers_Group_ass.SelectedItem as DataRowView;
             if (selectedGroup == null)
             {

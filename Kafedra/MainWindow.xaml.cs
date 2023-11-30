@@ -60,8 +60,6 @@ namespace Kafedra
                             Frame frame = new Frame();
                             frame.Navigate(new AdminPage(name));
                             Content = frame;
-                            // MainWindow main = (MainWindow)Application.Current.MainWindow;
-                            //   main.MainFrame.Navigate(new AdminPage(name));
                         }
                     }
                     else

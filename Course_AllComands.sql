@@ -302,14 +302,11 @@ AS
 BEGIN
     DECLARE @Specialization_DisciplineID INT
 
-    -- Создаем запись в таблице Specialization_Discipline
     INSERT INTO Specialization_Discipline(FKSpecializationID, FKDisciplineID)
     VALUES (@FKSpecializationID, @FKDisciplineID)
 
-    -- Получаем ID только что созданной записи
     SET @Specialization_DisciplineID = SCOPE_IDENTITY()
 
-    -- Создаем запись в таблице TypeWork_Specialization_Discipline
     INSERT INTO TypeWork_Specialization_Discipline(FKTypeWorkID, FKSpecialization_DisciplineID)
     VALUES (@FKTypeWorkID, @Specialization_DisciplineID)
 END
@@ -388,17 +385,15 @@ CREATE PROCEDURE UnassignWorkFromSpecializationDiscipline
     @FKTypeWorkID INT
 AS
 BEGIN
-    -- Находим ID записи в таблице Specialization_Discipline
+
     DECLARE @Specialization_DisciplineID INT
     SELECT @Specialization_DisciplineID = Specialization_DisciplineID 
     FROM Specialization_Discipline 
     WHERE FKSpecializationID = @FKSpecializationID AND FKDisciplineID = @FKDisciplineID
 
-    -- Удаляем запись из таблицы TypeWork_Specialization_Discipline
     DELETE FROM TypeWork_Specialization_Discipline 
     WHERE FKTypeWorkID = @FKTypeWorkID AND FKSpecialization_DisciplineID = @Specialization_DisciplineID
 
-    -- Удаляем запись из таблицы Specialization_Discipline
     DELETE FROM Specialization_Discipline 
     WHERE Specialization_DisciplineID = @Specialization_DisciplineID
 END
@@ -781,3 +776,19 @@ EXEC GetGuestsAfterDate '2023-11-29';
 --- общее количество студентов на факультете
 SELECT SUM(StudentsCount) as TotalStudents
 FROM SupervisedGroup;
+
+
+-- запрос SQL для вывода всех проектов со статусом “В разработке”
+SELECT * FROM Projects WHERE Status = 'В разработке';
+
+-- запрос SQL для вывода всех преподавателей с заданным именем
+DECLARE @name NVARCHAR(50) = 'Павел';
+SELECT P.FirstName, P.LastName, P.Patronymic
+FROM Person P
+INNER JOIN Teacher T ON P.PersonID = T.FKPersonID
+WHERE P.FirstName = @name;
+
+
+
+-- процедура SQL для получения информации о среднем балле каждой дисциплины по выбранной группе
+----

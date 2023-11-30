@@ -125,7 +125,6 @@ namespace Kafedra
 
                 rowview.Row.Delete();
 
-                // Сохраняем изменения в базе данных
                 dataadapter.Update(ds, "EducationalMaterials");
             }
             else

@@ -62,7 +62,6 @@ namespace Kafedra.Study.Teacher.TeacherWindows
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            // Сохраните изменения в полях преподавателя
             FirstName = FirstNameTextBox.Text;
             LastName = LastNameTextBox.Text;
             Patronymic = PatronymicTextBox.Text;
