@@ -28,7 +28,7 @@
         <Label x:Name="_label" Content="Добро пожаловать Павел Павлов Павлович!" HorizontalAlignment="Left" Margin="1,7,0,0" VerticalAlignment="Top" Foreground="#FFB5BAC1" FontSize="20" FontWeight="Bold" Grid.ColumnSpan="2" Height="37" Width="602" Grid.Column="1"/>
         <Frame x:Name="MyFrame" Grid.Column="2" Margin="10,52,10,20" Foreground="#FFB93434" Background="#FF1A1A1A" Grid.RowSpan="2"/>
 
-        <StackPanel Margin="0,89,0,0" HorizontalAlignment="Left" Width="132" Grid.Column="1" Grid.ColumnSpan="2">
+        <StackPanel Margin="0,63,0,26" HorizontalAlignment="Left" Width="132" Grid.Column="1">
             <Button Content="Учебные материалы" Width="132" Click="EDMat_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Height="46"/>
             <Button Content="Мероприятия" Width="132" Click="Events_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Height="46"/>
             <Button Content="Проекты" Width="132" Click="Projects_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Height="46"/>
@@ -36,6 +36,8 @@
             <Button Content="Дисциплины" Width="132" Click="Disciplines_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Height="46"/>
             <Button Content="Группы" Width="132" Click="Grop_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Height="46"/>
             <Button Content="Другое" Width="132" Click="Other_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Height="46"/>
+            <Button Content="Выход" Width="132" Click="Exit_Click" Background="#FF5865F2" BorderBrush="#FF4F5CE8" FontSize="14" FontWeight="Bold" Foreground="White" Height="46"/>
+
         </StackPanel>
     </Grid>
 </Page>
