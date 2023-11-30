@@ -761,3 +761,23 @@ EXEC GetMaterialsAfterYear @Year = 2020
 
 
 drop procedure GetGradesByGroupID
+
+-- принимает дату в качестве параметра и возвращает список гостей, которые посетили мероприятие после указанной даты.
+CREATE PROCEDURE GetGuestsAfterDate
+    @date DATE
+AS
+BEGIN
+    SELECT g.FirstName, g.LastName, g.Patronymic
+    FROM Guests g
+    JOIN Events_Guests eg ON g.GuestsID = eg.FKGuestsID
+    JOIN Events e ON eg.FKEventsID = e.EventsID
+    WHERE e.EventDate > @date;
+END;
+
+EXEC GetGuestsAfterDate '2023-11-29';
+
+
+
+--- общее количество студентов на факультете
+SELECT SUM(StudentsCount) as TotalStudents
+FROM SupervisedGroup;

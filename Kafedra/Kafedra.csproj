@@ -64,6 +64,9 @@
     <Compile Include="EventsAddingWindows\EditParticipantWindow.xaml.cs">
       <DependentUpon>EditParticipantWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OtherProcedures\GetGuestPerDate.xaml.cs">
+      <DependentUpon>GetGuestPerDate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OtherProcedures\GetMaterialsAfterYear.xaml.cs">
       <DependentUpon>GetMaterialsAfterYear.xaml</DependentUpon>
     </Compile>
@@ -223,6 +226,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="OtherProcedures\GetGuestPerDate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OtherProcedures\GetMaterialsAfterYear.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

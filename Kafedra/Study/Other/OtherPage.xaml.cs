@@ -102,5 +102,32 @@ namespace Kafedra.Study.Other
             GetMaterialsAfterYear GetMaterialsAfterYear = new GetMaterialsAfterYear();
             GetMaterialsAfterYear.ShowDialog();
         }
+
+        private void GetGuestPerDate(object sender, RoutedEventArgs e)
+        {
+            GetGuestPerDate GetGuestPerDate = new GetGuestPerDate();
+            GetGuestPerDate.ShowDialog();
+        }
+
+        private void btnExecute_Click(object sender, RoutedEventArgs e)
+        {
+            string sql = "SELECT SUM(StudentsCount) as TotalStudents FROM SupervisedGroup";
+
+            using (SqlConnection connection = new SqlConnection(SQLConnection.connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sql, connection);
+                object result = command.ExecuteScalar();
+
+                if (result != null)
+                {
+                    MessageBox.Show("Всего студентов: " + result.ToString());
+                }
+                else
+                {
+                    MessageBox.Show("No data found.");
+                }
+            }
+        }
     }
 }
