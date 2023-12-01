@@ -15,7 +15,7 @@
                 <Grid Background="#FF1A1A1A" Margin="0,0,-4,0" Height="460">
 
 
-                    <DataGrid Name="SpecializationDataGrid" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Height="282" Width="260" SelectionChanged="dataGrid1_SelectionChanged">
+                    <DataGrid Name="SpecializationDataGrid" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="352" Width="317" SelectionChanged="dataGrid1_SelectionChanged">
                         <DataGrid.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="Добавить" Click="AddSpecButton_Click"/>
@@ -25,7 +25,7 @@
                         </DataGrid.ContextMenu>
                     </DataGrid>
 
-                    <DataGrid Name="DisciplineDataGrid" HorizontalAlignment="Left" Margin="288,80,0,0" VerticalAlignment="Top" Height="282" Width="260" SelectionChanged="dataGrid1_SelectionChanged">
+                    <DataGrid Name="DisciplineDataGrid" HorizontalAlignment="Left" Margin="332,10,0,0" VerticalAlignment="Top" Height="352" Width="313" SelectionChanged="dataGrid1_SelectionChanged">
                         <DataGrid.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="Добавить" Click="AddDisciplineButton_Click"/>
