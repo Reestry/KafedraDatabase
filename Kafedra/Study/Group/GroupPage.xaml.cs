@@ -99,6 +99,11 @@ namespace Kafedra.Study.Group
         private void DeleteGroupButton_Click(object sender, RoutedEventArgs e)
         {
 
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить эту запись?", "Подтверждение удаления", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
         }
         private void _groupDataGrade_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -181,6 +186,12 @@ namespace Kafedra.Study.Group
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить эту запись?", "Подтверждение удаления", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
+
             if (_groupData_GetGrade.SelectedItem != null)
             {
                 DataRowView rowView = (DataRowView)_groupData_GetGrade.SelectedItem;

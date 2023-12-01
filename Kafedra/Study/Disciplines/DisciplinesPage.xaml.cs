@@ -148,6 +148,13 @@ namespace Kafedra.Study.Disciplines
                 MessageBox.Show("Пожалуйста, выберите специализацию для удаления.");
                 return;
             }
+
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить эту запись?", "Подтверждение удаления", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
+
             command = new SqlCommand("EXEC DeleteSpecialization @SpecializationID", connection);
             command.Parameters.AddWithValue("@SpecializationID", selectedSpecialization["SpecializationID"]);
             adapter.DeleteCommand = command;
@@ -156,6 +163,7 @@ namespace Kafedra.Study.Disciplines
             connection.Close();
             Update();
         }
+
 
         private void AddDisciplineButton_Click(object sender, RoutedEventArgs e)
         {
@@ -202,6 +210,13 @@ namespace Kafedra.Study.Disciplines
                 MessageBox.Show("Пожалуйста, выберите дисциплину для удаления.");
                 return;
             }
+
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить эту запись?", "Подтверждение удаления", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
+
             command = new SqlCommand("EXEC DeleteDiscipline @DisciplineID", connection);
             command.Parameters.AddWithValue("@DisciplineID", selectedDiscipline["DisciplineID"]);
             adapter.DeleteCommand = command;
@@ -301,6 +316,13 @@ namespace Kafedra.Study.Disciplines
                 MessageBox.Show("Пожалуйста, выберите запись для удаления.");
                 return;
             }
+
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить эту запись?", "Подтверждение удаления", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
+
             var selectedSpecializationID = (int)selectedRow["FKSpecializationID"];
             var selectedDisciplineID = (int)selectedRow["FKDisciplineID"];
             var selectedTypeWorkID = (int)selectedRow["FKTypeWorkID"];
