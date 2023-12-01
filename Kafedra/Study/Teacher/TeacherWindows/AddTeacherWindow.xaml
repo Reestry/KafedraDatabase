@@ -6,25 +6,25 @@
         xmlns:local="clr-namespace:Kafedra.Study.Teacher.TeacherWindows"
         mc:Ignorable="d"
         Title="AddTeacherWindow" Height="450" Width="800">
-    <Grid>
-        <Label Content="Имя" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+    <Grid Background="#FF313338">
+        <Label Content="Имя" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="#FFECECEC" FontWeight="Bold" FontSize="14"/>
         <TextBox x:Name="FirstNameTextBox" HorizontalAlignment="Left" Height="23" Margin="10,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
-        <Label Content="Фамилия" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top"/>
+        <Label Content="Фамилия" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Foreground="#FFEAEAEA" FontWeight="Bold" FontSize="14"/>
         <TextBox x:Name="LastNameTextBox" HorizontalAlignment="Left" Height="23" Margin="10,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
-        <Label Content="Отчество" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top"/>
+        <Label Content="Отчество" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" Foreground="#FFEDEDED" FontWeight="Bold" FontSize="14"/>
         <TextBox x:Name="PatronymicTextBox" HorizontalAlignment="Left" Height="23" Margin="10,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
-        <Label Content="Логин" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top"/>
+        <Label Content="Логин" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Foreground="#FFECECEC" FontWeight="Bold" FontSize="14"/>
         <TextBox x:Name="LoginTextBox" HorizontalAlignment="Left" Height="23" Margin="10,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
-        <Label Content="Пароль" HorizontalAlignment="Left" Margin="10,210,0,0" VerticalAlignment="Top"/>
+        <Label Content="Пароль" HorizontalAlignment="Left" Margin="10,210,0,0" VerticalAlignment="Top" Foreground="#FFEAEAEA" FontWeight="Bold" FontSize="14"/>
         <TextBox x:Name="PasswordTextBox" HorizontalAlignment="Left" Height="23" Margin="10,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
-        <Label Content="Должность" HorizontalAlignment="Left" Margin="10,260,0,0" VerticalAlignment="Top"/>
+        <Label Content="Должность" HorizontalAlignment="Left" Margin="10,260,0,0" VerticalAlignment="Top" Foreground="#FFEDEDED" FontWeight="Bold" FontSize="14"/>
         <ComboBox x:Name="PostComboBox" HorizontalAlignment="Left" Height="23" Margin="10,280,0,0" VerticalAlignment="Top" Width="120"/>
-        
-        <Button Content="Добавить" HorizontalAlignment="Left" Margin="10,320,0,0" VerticalAlignment="Top" Width="75" Click="AddButton_Click"/>
+
+        <Button Content="Добавить" HorizontalAlignment="Left" Margin="10,320,0,0" VerticalAlignment="Top" Width="75" Click="AddButton_Click" Background="#FF5865F2" Foreground="#FFECECEC" FontWeight="Bold" FontSize="15" Height="33"/>
     </Grid>
 </Window>
