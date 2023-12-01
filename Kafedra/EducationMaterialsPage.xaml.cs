@@ -116,6 +116,12 @@ namespace Kafedra
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить эту запись?", "Подтверждение удаления", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
+
             DataRowView rowview = dataGrid.SelectedItem as DataRowView;
 
             if (rowview != null)

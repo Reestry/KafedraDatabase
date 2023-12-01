@@ -167,6 +167,7 @@ BEGIN
     INNER JOIN Specialization S ON SD.FKSpecializationID = S.SpecializationID
 END
 
+exec GetFullInfoForTypeWork_Specialization_Discipline
 
 
 CREATE PROCEDURE RemoveTeacherAssignment

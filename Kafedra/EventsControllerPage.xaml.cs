@@ -147,6 +147,14 @@ namespace Kafedra
 
         private void RemoveAssignmentButton_Click(object sender, RoutedEventArgs e)
         {
+
+
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить эту запись?", "Подтверждение удаления", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
+
             try
             {
                 if (dataGrid.SelectedItem == null)
@@ -250,6 +258,13 @@ namespace Kafedra
 
         private void DeleteEventButton_Click(object sender, RoutedEventArgs e)
         {
+
+
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить эту запись?", "Подтверждение удаления", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
             try
             {
                 if (eventsComboBox.SelectedItem == null)
@@ -289,6 +304,13 @@ namespace Kafedra
 
         private void DeletePartButton_Click(object sender, RoutedEventArgs e)
         {
+
+
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить эту запись?", "Подтверждение удаления", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
             try
             {
                 if (participantsComboBox.SelectedItem == null)
@@ -405,6 +427,12 @@ namespace Kafedra
 
         private void DeleteEventButton_Click1(object sender, RoutedEventArgs e)
         {
+
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить эту запись?", "Подтверждение удаления", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
             try
             {
                 if (eventsComboBox1.SelectedItem == null)
@@ -471,6 +499,12 @@ namespace Kafedra
 
         private void DeleteGuestButton_Click(object sender, RoutedEventArgs e)
         {
+
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить эту запись?", "Подтверждение удаления", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
             try
             {
                 if (guestsComboBox.SelectedItem == null)
@@ -571,6 +605,12 @@ namespace Kafedra
 
         private void RemoveAssignmentButton_Click1(object sender, RoutedEventArgs e)
         {
+
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить эту запись?", "Подтверждение удаления", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
             try
             {
                 if (dataGrid1.SelectedItem == null)

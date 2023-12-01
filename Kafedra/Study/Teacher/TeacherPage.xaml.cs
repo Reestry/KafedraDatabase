@@ -74,6 +74,13 @@ namespace Kafedra.Study.Teacher
 
         private void DeleteTeacherButton_Click(object sender, RoutedEventArgs e)
         {
+
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить эту запись?", "Подтверждение удаления", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
+
             if (_teachersGrid.SelectedItem != null)
             {
                 DataRowView row = (DataRowView)_teachersGrid.SelectedItem;
@@ -225,6 +232,13 @@ namespace Kafedra.Study.Teacher
 
         private void DeleteAssignTeacher_Click(object sender, RoutedEventArgs e)
         {
+
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить эту запись?", "Подтверждение удаления", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
+
             DataRowView rowView = _teachers_disciplinesGrid.SelectedItem as DataRowView;
             if (rowView != null)
             {
@@ -347,6 +361,13 @@ namespace Kafedra.Study.Teacher
             if (selectedGroup == null)
             {
                 MessageBox.Show("Пожалуйста, выберите группу.");
+                return;
+            }
+
+
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить эту запись?", "Подтверждение удаления", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No)
+            {
                 return;
             }
 
